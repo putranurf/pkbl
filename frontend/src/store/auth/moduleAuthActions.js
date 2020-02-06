@@ -122,125 +122,125 @@ export default {
             })
     },
 
-    // Google Login
-    loginWithGoogle({commit, state}, payload) {
-        if (state.isUserLoggedIn()) {
-            payload.notify({
-                title: 'Login Attempt',
-                text: 'You are already logged in!',
-                iconPack: 'feather',
-                icon: 'icon-alert-circle',
-                color: 'warning'
-            })
-            return false
-        }
-        const provider = new firebase.auth.GoogleAuthProvider()
+    // // Google Login
+    // loginWithGoogle({commit, state}, payload) {
+    //     if (state.isUserLoggedIn()) {
+    //         payload.notify({
+    //             title: 'Login Attempt',
+    //             text: 'You are already logged in!',
+    //             iconPack: 'feather',
+    //             icon: 'icon-alert-circle',
+    //             color: 'warning'
+    //         })
+    //         return false
+    //     }
+    //     const provider = new firebase.auth.GoogleAuthProvider()
 
-        firebase.auth().signInWithPopup(provider)
-          .then((result) => {
-              router.push(router.currentRoute.query.to || '/')
-              commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
-          }).catch((err) => {
-              payload.notify({
-                  time: 2500,
-                  title: 'Error',
-                  text: err.message,
-                  iconPack: 'feather',
-                  icon: 'icon-alert-circle',
-                  color: 'danger'
-              })
-          })
-    },
+    //     firebase.auth().signInWithPopup(provider)
+    //       .then((result) => {
+    //           router.push(router.currentRoute.query.to || '/')
+    //           commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
+    //       }).catch((err) => {
+    //           payload.notify({
+    //               time: 2500,
+    //               title: 'Error',
+    //               text: err.message,
+    //               iconPack: 'feather',
+    //               icon: 'icon-alert-circle',
+    //               color: 'danger'
+    //           })
+    //       })
+    // },
 
-    // Facebook Login
-    loginWithFacebook({commit, state}, payload) {
-        if (state.isUserLoggedIn()) {
-            payload.notify({
-                title: 'Login Attempt',
-                text: 'You are already logged in!',
-                iconPack: 'feather',
-                icon: 'icon-alert-circle',
-                color: 'warning'
-            })
-            return false
-        }
-        const provider = new firebase.auth.FacebookAuthProvider()
+    // // Facebook Login
+    // loginWithFacebook({commit, state}, payload) {
+    //     if (state.isUserLoggedIn()) {
+    //         payload.notify({
+    //             title: 'Login Attempt',
+    //             text: 'You are already logged in!',
+    //             iconPack: 'feather',
+    //             icon: 'icon-alert-circle',
+    //             color: 'warning'
+    //         })
+    //         return false
+    //     }
+    //     const provider = new firebase.auth.FacebookAuthProvider()
 
-        firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                router.push(router.currentRoute.query.to || '/')
-                commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
-            }).catch((err) => {
-                payload.notify({
-                    time: 2500,
-                    title: 'Error',
-                    text: err.message,
-                    iconPack: 'feather',
-                    icon: 'icon-alert-circle',
-                    color: 'danger'
-                })
-            })
-    },
+    //     firebase.auth().signInWithPopup(provider)
+    //         .then((result) => {
+    //             router.push(router.currentRoute.query.to || '/')
+    //             commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
+    //         }).catch((err) => {
+    //             payload.notify({
+    //                 time: 2500,
+    //                 title: 'Error',
+    //                 text: err.message,
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-alert-circle',
+    //                 color: 'danger'
+    //             })
+    //         })
+    // },
 
-    // Twitter Login
-    loginWithTwitter({commit, state}, payload) {
-        if (state.isUserLoggedIn()) {
-            payload.notify({
-                title: 'Login Attempt',
-                text: 'You are already logged in!',
-                iconPack: 'feather',
-                icon: 'icon-alert-circle',
-                color: 'warning'
-            })
-            return false
-        }
-        const provider = new firebase.auth.TwitterAuthProvider()
+    // // Twitter Login
+    // loginWithTwitter({commit, state}, payload) {
+    //     if (state.isUserLoggedIn()) {
+    //         payload.notify({
+    //             title: 'Login Attempt',
+    //             text: 'You are already logged in!',
+    //             iconPack: 'feather',
+    //             icon: 'icon-alert-circle',
+    //             color: 'warning'
+    //         })
+    //         return false
+    //     }
+    //     const provider = new firebase.auth.TwitterAuthProvider()
 
-        firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                router.push(router.currentRoute.query.to || '/')
-                commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
-            }).catch((err) => {
-                payload.notify({
-                    time: 2500,
-                    title: 'Error',
-                    text: err.message,
-                    iconPack: 'feather',
-                    icon: 'icon-alert-circle',
-                    color: 'danger'
-                })
-            })
-    },
+    //     firebase.auth().signInWithPopup(provider)
+    //         .then((result) => {
+    //             router.push(router.currentRoute.query.to || '/')
+    //             commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
+    //         }).catch((err) => {
+    //             payload.notify({
+    //                 time: 2500,
+    //                 title: 'Error',
+    //                 text: err.message,
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-alert-circle',
+    //                 color: 'danger'
+    //             })
+    //         })
+    // },
 
-    // Github Login
-    loginWithGithub({commit, state}, payload) {
-        if (state.isUserLoggedIn()) {
-            payload.notify({
-                title: 'Login Attempt',
-                text: 'You are already logged in!',
-                iconPack: 'feather',
-                icon: 'icon-alert-circle',
-                color: 'warning'
-            })
-            return false
-        }
-        const provider = new firebase.auth.GithubAuthProvider()
+    // // Github Login
+    // loginWithGithub({commit, state}, payload) {
+    //     if (state.isUserLoggedIn()) {
+    //         payload.notify({
+    //             title: 'Login Attempt',
+    //             text: 'You are already logged in!',
+    //             iconPack: 'feather',
+    //             icon: 'icon-alert-circle',
+    //             color: 'warning'
+    //         })
+    //         return false
+    //     }
+    //     const provider = new firebase.auth.GithubAuthProvider()
 
-        firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                router.push(router.currentRoute.query.to || '/')
-                commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
-            }).catch((err) => {
-                payload.notify({
-                    time: 2500,
-                    title: 'Error',
-                    text: err.message,
-                    iconPack: 'feather',
-                    icon: 'icon-alert-circle',
-                    color: 'danger'
-                })
-            })
-    },
+    //     firebase.auth().signInWithPopup(provider)
+    //         .then((result) => {
+    //             router.push(router.currentRoute.query.to || '/')
+    //             commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
+    //         }).catch((err) => {
+    //             payload.notify({
+    //                 time: 2500,
+    //                 title: 'Error',
+    //                 text: err.message,
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-alert-circle',
+    //                 color: 'danger'
+    //             })
+    //         })
+    // },
     registerUser({dispatch}, payload) {
 
         // create user using firebase
@@ -309,9 +309,10 @@ export default {
             // If there's user data in response
             if(response.data.userData) {
               // Navigate User to homepage
-              router.push(router.currentRoute.query.to || '/')
+              router.push({ name: 'dashboard-analytics'})
+              // router.push(router.currentRoute.query.to || '/')
 
-              // Set accessToken
+              // Set accessToken              
               localStorage.setItem("accessToken", response.data.accessToken)
 
               // Update user details

@@ -1,7 +1,7 @@
 // axios
 import axios from 'axios'
 
-const domain = ""
+const domain = "http://localhost:7002/"
 
 export default axios.create({
   domain
