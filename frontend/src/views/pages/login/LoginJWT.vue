@@ -1,16 +1,16 @@
 <template>
   <div>
     <vs-input
-        v-validate="'required|email|min:3'"
+        v-validate="'required|min:5|min:3'"
         data-vv-validate-on="blur"
-        name="email"
+        name="npp"
         icon-no-border
         icon="icon icon-user"
         icon-pack="feather"
-        label-placeholder="Email"
-        v-model="email"
+        label-placeholder="Npp"
+        v-model="npp"
         class="w-full"/>
-    <span class="text-danger text-sm">{{ errors.first('email') }}</span>
+    <span class="text-danger text-sm">{{ errors.first('npp') }}</span>
 
     <vs-input
         data-vv-validate-on="blur"
@@ -40,14 +40,14 @@
 export default {
   data() {
     return {
-      email: 'admin@admin.com',
-      password: 'adminadmin',
+      npp: '06010',
+      password: 'carotid22',
       checkbox_remember_me: false
     }
   },
   computed: {
     validateForm() {
-      return !this.errors.any() && this.email != '' && this.password != '';
+      return !this.errors.any() && this.npp != '' && this.password != '';
     },
   },
   methods: {
@@ -81,7 +81,7 @@ export default {
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
-          email: this.email,
+          npp: this.npp,
           password: this.password
         }
       }
@@ -92,7 +92,7 @@ export default {
           this.$vs.loading.close()
           this.$vs.notify({
             title: 'Error',
-            text: error.message,
+            text: error.message,            
             iconPack: 'feather',
             icon: 'icon-alert-circle',
             color: 'danger'

@@ -305,30 +305,24 @@ export default {
         jwt.login(payload.userDetails.npp, payload.userDetails.password)
           .then(response => {
             // If there's user data in response
-            
-            console.log(response)
-            console.log(response.data[1].userData[0])
-            
-            // if(response.data.userData) {
-            if(response.data[1]) {
+            if(response.data.userData) {
               // Navigate User to homepage
-              // router.push({ name: 'dashboard-analytics'})      
-              router.push(router.currentRoute.query.to || {name: 'dashboard-analytics'})
+              router.push({ name: 'dashboard-analytics'})      
+              // router.push(router.currentRoute.query.to || '/')
               
               // Set accessToken              
-              localStorage.setItem("accessToken", response.data[1].accessToken)
+              localStorage.setItem("accessToken", response.data.accessToken)
               
               // Update user details
-              commit('UPDATE_USER_INFO', response.data[1].userData, {root: true})
-              // commit('UPDATE_USER_INFO', response.data[0], {root: true})
+              commit('UPDATE_USER_INFO', response.data.userData, {root: true})
               
-              // Set bearer token in axios              
-              commit("SET_BEARER", response.data[1].accessToken)
+              // Set bearer token in axios
+              commit("SET_BEARER", response.data.accessToken)
               
               resolve(response)
             }else {
-              reject({message: "Wrong Username or Password"})
-              // reject({message: response})
+              // reject({message: "Wrong Username or Password"})
+              reject({message: response})
             }
             
             

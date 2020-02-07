@@ -44,9 +44,9 @@ export default {
       return Promise.reject(error)
     })
   },
-  login(email, pwd) {
+  login(npp, pwd) {
     // return axios.post("/api/auth/login", {email: email, password: pwd})
-    return axios.post("/api/auth/login", {email: email, password: pwd})
+    return axios.post("/api/auth", {npp: npp, password: pwd})
   },
   registerUser(name, email, pwd) {
     return axios.post("/api/auth/register", {displayName: name, email: email, password: pwd})
