@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     checkLogin() {
-      console.log(this.$store.state.auth.isUserLoggedIn())
+      // console.log(this.$store.state.auth.isUserLoggedIn())
       // If user is already logged in notify
       if (this.$store.state.auth.isUserLoggedIn()) {
 

@@ -307,7 +307,7 @@ export default {
             // If there's user data in response
             
             console.log(response)
-            console.log(response.data[1].userData[0])
+            // console.log(response.data[1].userData[0])
             
             // if(response.data.userData) {
             if(response.data[1]) {
