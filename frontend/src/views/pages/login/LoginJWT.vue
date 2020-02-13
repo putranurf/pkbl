@@ -3,14 +3,14 @@
     <vs-input
         v-validate="'required|min:5|min:3'"
         data-vv-validate-on="blur"
-        name="npp"
+        name="username"
         icon-no-border
         icon="icon icon-user"
         icon-pack="feather"
-        label-placeholder="Npp"
-        v-model="npp"
+        label-placeholder="Username"
+        v-model="username"
         class="w-full"/>
-    <span class="text-danger text-sm">{{ errors.first('npp') }}</span>
+    <span class="text-danger text-sm">{{ errors.first('username') }}</span>
 
     <vs-input
         data-vv-validate-on="blur"
@@ -37,17 +37,19 @@
 </template>
 
 <script>
+import router from '@/router'
+
 export default {
   data() {
     return {
-      npp: '06010',
+      username: '06010',
       password: 'carotid22',
       checkbox_remember_me: false
     }
   },
   computed: {
     validateForm() {
-      return !this.errors.any() && this.npp != '' && this.password != '';
+      return !this.errors.any() && this.username != '' && this.password != '';
     },
   },
   methods: {
@@ -81,13 +83,13 @@ export default {
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
-          npp: this.npp,
+          username: this.username,
           password: this.password
         }
       }
       
-      this.$store.dispatch('auth/loginJWT', payload)
-        .then(() => { this.$vs.loading.close() })
+      this.$store.dispatch('auth/login', payload)
+        .then(() => this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"} ))
         .catch(error => {
           this.$vs.loading.close()
           this.$vs.notify({

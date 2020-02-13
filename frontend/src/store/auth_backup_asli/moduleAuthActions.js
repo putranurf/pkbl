@@ -8,119 +8,117 @@
 ==========================================================================================*/
 
 import jwt from "../../http/requests/auth/jwt/index.js"
+import axios from "../../axios/index.js"
 
-
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import router from '@/router'
 
 export default {
-    loginAttempt({ dispatch }, payload) {
+    // loginAttempt({ dispatch }, payload) {
 
-        // New payload for login action
-        const newPayload = {
-            userDetails: payload.userDetails,
-            notify: payload.notify,
-            closeAnimation: payload.closeAnimation
-        }
+    //     // New payload for login action
+    //     const newPayload = {
+    //         userDetails: payload.userDetails,
+    //         notify: payload.notify,
+    //         closeAnimation: payload.closeAnimation
+    //     }
 
-        // If remember_me is enabled change firebase Persistence
-        if (!payload.checkbox_remember_me) {
+    //     // If remember_me is enabled change firebase Persistence
+    //     if (!payload.checkbox_remember_me) {
 
-            // Change firebase Persistence
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    //         // Change firebase Persistence
+    //         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
-                // If success try to login
-                .then(function() {
-                    dispatch('login', newPayload)
-                })
+    //             // If success try to login
+    //             .then(function() {
+    //                 dispatch('login', newPayload)
+    //             })
 
-                // If error notify
-                .catch(function(err) {
+    //             // If error notify
+    //             .catch(function(err) {
 
-                    // Close animation if passed as payload
-                    if(payload.closeAnimation) payload.closeAnimation()
+    //                 // Close animation if passed as payload
+    //                 if(payload.closeAnimation) payload.closeAnimation()
 
-                    payload.notify({
-                        time: 2500,
-                        title: 'Error',
-                        text: err.message,
-                        iconPack: 'feather',
-                        icon: 'icon-alert-circle',
-                        color: 'danger'
-                    })
-                })
-        } else {
-            // Try to login
-            dispatch('login', newPayload)
-        }
-    },
-    login({ commit, state, dispatch }, payload) {
+    //                 payload.notify({
+    //                     time: 2500,
+    //                     title: 'Error',
+    //                     text: err.message,
+    //                     iconPack: 'feather',
+    //                     icon: 'icon-alert-circle',
+    //                     color: 'danger'
+    //                 })
+    //             })
+    //     } else {
+    //         // Try to login
+    //         dispatch('login', newPayload)
+    //     }
+    // },
+    // login({ commit, state, dispatch }, payload) {
 
-        // If user is already logged in notify and exit
-        if (state.isUserLoggedIn()) {
-            // Close animation if passed as payload
-            if(payload.closeAnimation) payload.closeAnimation()
+    //     // If user is already logged in notify and exit
+    //     if (state.isUserLoggedIn()) {
+    //         // Close animation if passed as payload
+    //         if(payload.closeAnimation) payload.closeAnimation()
 
-            payload.notify({
-                title: 'Login Attempt',
-                text: 'You are already logged in!',
-                iconPack: 'feather',
-                icon: 'icon-alert-circle',
-                color: 'warning'
-            })
+    //         payload.notify({
+    //             title: 'Login Attempt',
+    //             text: 'You are already logged in!',
+    //             iconPack: 'feather',
+    //             icon: 'icon-alert-circle',
+    //             color: 'warning'
+    //         })
 
-            return false
-        }
+    //         return false
+    //     }
 
-        // Try to sigin
-        firebase.auth().signInWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
+    //     // Try to sigin
+    //     firebase.auth().signInWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
 
-            .then((result) => {
+    //         .then((result) => {
 
-                // Set FLAG username update required for updating username
-                let isUsernameUpdateRequired = false
+    //             // Set FLAG username update required for updating username
+    //             let isUsernameUpdateRequired = false
 
-                // if username is provided and updateUsername FLAG is true
-                  // set local username update FLAG to true
-                  // try to update username
-                if(payload.updateUsername && payload.userDetails.displayName) {
+    //             // if username is provided and updateUsername FLAG is true
+    //               // set local username update FLAG to true
+    //               // try to update username
+    //             if(payload.updateUsername && payload.userDetails.displayName) {
 
-                    isUsernameUpdateRequired = true
+    //                 isUsernameUpdateRequired = true
 
-                    dispatch('updateUsername', {
-                      user: result.user,
-                      username: payload.userDetails.displayName,
-                      notify: payload.notify,
-                      isReloadRequired: true
-                    })
-                }
+    //                 dispatch('updateUsername', {
+    //                   user: result.user,
+    //                   username: payload.userDetails.displayName,
+    //                   notify: payload.notify,
+    //                   isReloadRequired: true
+    //                 })
+    //             }
 
-                // Close animation if passed as payload
-                if(payload.closeAnimation) payload.closeAnimation()
+    //             // Close animation if passed as payload
+    //             if(payload.closeAnimation) payload.closeAnimation()
 
-                // if username update is not required
-                  // just reload the page to get fresh data
-                  // set new user data in localstorage
-                if(!isUsernameUpdateRequired) {
-                  router.push(router.currentRoute.query.to || '/')
-                  commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
-                }
-            }, (err) => {
+    //             // if username update is not required
+    //               // just reload the page to get fresh data
+    //               // set new user data in localstorage
+    //             if(!isUsernameUpdateRequired) {
+    //               router.push(router.currentRoute.query.to || '/')
+    //               commit('UPDATE_USER_INFO', result.user.providerData[0], {root: true})
+    //             }
+    //         }, (err) => {
 
-                // Close animation if passed as payload
-                if(payload.closeAnimation) payload.closeAnimation()
+    //             // Close animation if passed as payload
+    //             if(payload.closeAnimation) payload.closeAnimation()
 
-                payload.notify({
-                    time: 2500,
-                    title: 'Error',
-                    text: err.message,
-                    iconPack: 'feather',
-                    icon: 'icon-alert-circle',
-                    color: 'danger'
-                })
-            })
-    },
+    //             payload.notify({
+    //                 time: 2500,
+    //                 title: 'Error',
+    //                 text: err.message,
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-alert-circle',
+    //                 color: 'danger'
+    //             })
+    //         })
+    // },
 
     // // Google Login
     // loginWithGoogle({commit, state}, payload) {
@@ -241,35 +239,35 @@ export default {
     //             })
     //         })
     // },
-    registerUser({dispatch}, payload) {
+    // registerUser({dispatch}, payload) {
 
-        // create user using firebase
-        firebase.auth().createUserWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
-            .then(() => {
-                payload.notify({
-                    title: 'Account Created',
-                    text: 'You are successfully registered!',
-                    iconPack: 'feather',
-                    icon: 'icon-check',
-                    color: 'success'
-                })
+    //     // create user using firebase
+    //     firebase.auth().createUserWithEmailAndPassword(payload.userDetails.email, payload.userDetails.password)
+    //         .then(() => {
+    //             payload.notify({
+    //                 title: 'Account Created',
+    //                 text: 'You are successfully registered!',
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-check',
+    //                 color: 'success'
+    //             })
 
-                const newPayload = {
-                    userDetails: payload.userDetails,
-                    notify: payload.notify,
-                    updateUsername: true
-                }
-                dispatch('login', newPayload)
-            }, (error) => {
-                payload.notify({
-                    title: 'Error',
-                    text: error.message,
-                    iconPack: 'feather',
-                    icon: 'icon-alert-circle',
-                    color: 'danger'
-                })
-            })
-    },
+    //             const newPayload = {
+    //                 userDetails: payload.userDetails,
+    //                 notify: payload.notify,
+    //                 updateUsername: true
+    //             }
+    //             dispatch('login', newPayload)
+    //         }, (error) => {
+    //             payload.notify({
+    //                 title: 'Error',
+    //                 text: error.message,
+    //                 iconPack: 'feather',
+    //                 icon: 'icon-alert-circle',
+    //                 color: 'danger'
+    //             })
+    //         })
+    // },
     updateUsername({ commit }, payload) {
         payload.user.updateProfile({
             displayName: payload.displayName
@@ -298,7 +296,48 @@ export default {
         })
     },
 
+    login({ commit }, payload) {
+        return new Promise((resolve, reject) => {
+            // commit('AUTHENTICATED_USER_REQUEST')
+            axios
+                .post('api/auth', {
+                    username: payload.userDetails.username,
+                    password: payload.userDetails.password
+                })
+                .then(response => {
+                    // const token = resp.data.TOKEN.accessToken
+                    // const user = JSON.stringify(resp.data.USER)
+                    // localStorage.setItem('userInfo', user);
 
+                    localStorage.setItem("accessToken", response.data.accessToken)
+                    commit('UPDATE_USER_INFO', response.data.userData, {root: true})
+
+                    // localStorage.setItem('userRole', 'admin');
+                    // Cookies.set('JWT_TOKEN', token,{ expires: 1 });
+                    // axios.defaults.headers.common['Authorization'] = token
+                    // commit('AUTHENTICATED_USER_SUCCESS', { token, user});
+                    resolve(response)
+                    
+                })
+                .catch(err => {
+                    // commit('AUTHENTICATED_USER_ERROR')
+                    localStorage.removeItem('accessToken')
+                    localStorage.removeItem('userInfo')
+                    // localStorage.removeItem('userRole')
+                    // Cookies.remove('JWT_TOKEN')
+                    // payload.notify({
+                    //     time: 2500,
+                    //     title: 'Error',
+                    //     // text: err.message,
+                    //     text: err.response.data.reason,
+                    //     iconPack: 'feather',
+                    //     icon: 'icon-alert-circle',
+                    //     color: 'danger'
+                    // })
+                    reject({message: response})
+                })
+        })
+    },
     // JWT
     loginJWT({ commit }, payload) {      
       return new Promise((resolve,reject) => {
