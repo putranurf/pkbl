@@ -17,12 +17,25 @@
 <script>
 import themeConfig from '@/../themeConfig.js'
 import jwt         from "@/http/requests/auth/jwt/index.js"
+import axios         from "axios"
 
 export default {
   data() {
     return {
       vueAppClasses: [],
     }
+  },
+  created: function () {
+    console.log(this.$http.interceptors.response.use);
+    // this.$http.interceptors.response.use(undefined, function (err) {
+    axios.interceptors.response.use(undefined, function (err) {  
+      return new Promise(function (resolve, reject) {
+        if (err.status === 403 && err.config && !err.config.__isRetryRequest) {
+          this.$store.dispatch('auth/logout')
+        }
+        throw err;
+      });
+    });
   },
   watch: {
     '$store.state.theme'(val) {
@@ -82,6 +95,17 @@ export default {
     // Auth0
     try       { await this.$auth.renewTokens() }
     catch (e) { console.error(e) }
+
+    // axios.interceptors.response.use(undefined, function (err) {
+    // return new Promise(function (resolve, reject) {
+    //   if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+    //   // if you ever get an unauthorized, logout the user
+    //     this.$store.dispatch('auth/logout')
+    //   // you can also redirect to /login if needed !
+    //   }
+    //   throw err;
+    // });
+  // });
 
   },
   destroyed() {

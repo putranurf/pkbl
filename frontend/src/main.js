@@ -18,6 +18,12 @@ import 'vuesax/dist/vuesax.css'; // Vuesax
 Vue.use(Vuesax)
 
 
+const token = localStorage.getItem('accessToken')
+if (token) {
+  // axios.defaults.headers.common['Authorization'] = token
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
+
 // axios
 import axios from "./axios.js"
 Vue.prototype.$http = axios

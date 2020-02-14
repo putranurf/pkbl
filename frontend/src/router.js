@@ -19,6 +19,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../src/store/store'
 
 Vue.use(Router)
 
@@ -1450,17 +1451,22 @@ router.afterEach(() => {
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
         const loggedIn = localStorage.getItem('userInfo');        
-      if (!loggedIn) {
-        next({
-          path: '/pages/login',
-        //   query: { redirect: to.path }
-        })
-      } else {
+    //   if (!loggedIn) {
+    //     next({
+    //       path: '/pages/login',
+    //     //   query: { redirect: to.path }
+    //     })
+    //   } else {
+    //     next()
+    //   }
+        if (!store.getters['auth/isAuthenticated']) {
+          next('/pages/login')
+          return
+        }
         next()
-      }
+
     } else {
       next() // make sure to always call next()!
     }
   })
-
 export default router

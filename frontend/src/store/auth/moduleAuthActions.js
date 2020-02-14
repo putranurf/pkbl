@@ -8,7 +8,7 @@
 ==========================================================================================*/
 
 import jwt from "../../http/requests/auth/jwt/index.js";
-import axios from "../../axios"
+import axios from "../../axios";
 
 import router from "@/router";
 
@@ -300,45 +300,38 @@ export default {
 
   login({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      // commit('AUTHENTICATED_USER_REQUEST')
-      axios
-      .post("api/auth", {
-        username: payload.userDetails.username,
-        password: payload.userDetails.password
-      })
-      .then(response => {
-        const token = response.data[1].accessToken
-        // const user = JSON.stringify(resp.data.USER)
-        // localStorage.setItem('userInfo', user);
-        // console.log(response.data[1].userData[0]);
-        localStorage.setItem("accessToken", response.data[1].accessToken);
-        localStorage.setItem("userInfo", JSON.stringify(response.data[1].userData[0]));
-        // commit("UPDATE_USER_INFO", response.data.userData, { root: true });
-        
-        // localStorage.setItem('userRole', 'admin');
-        // Cookies.set('JWT_TOKEN', token,{ expires: 1 });
-        axios.defaults.headers.common['Authorization'] = token
-        // commit('AUTHENTICATED_USER_SUCCESS', { token, user});
-        resolve(response);
-      })
-      .catch(error => {
-        console.log('salah');
-        // commit('AUTHENTICATED_USER_ERROR')
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("userInfo");
-        // localStorage.removeItem('userRole')
-        // Cookies.remove('JWT_TOKEN')
-        // payload.notify({
-          //     time: 2500,
-          //     title: 'Error',
-          //     // text: err.message,
-          //     text: err.response.data.reason,
-          //     iconPack: 'feather',
-          //     icon: 'icon-alert-circle',
-          //     color: 'danger'
-          // })
-          reject(error);
+      // The Promise used for router redirect in login
+      commit('AUTH_REQUEST')
+      axios.post('api/auth', {
+            username: payload.userDetails.username,
+            password: payload.userDetails.password
+        })
+        .then(resp => {
+          const token = resp.data[1].accessToken;
+          const user = JSON.stringify(resp.data[1].userData[0]);
+          localStorage.setItem("accessToken", token); // store the token in localstorage
+          localStorage.setItem("userInfo", user); // store the token in localstorage
+          axios.defaults.headers.common['Authorization'] = token
+          commit('AUTH_SUCCESS', { token, user});
+          // you have your token, now log in your user :)
+          // dispatch('USER_REQUEST');
+          // console.log('masuk euy');
+          resolve(resp);
+        })
+        .catch(err => {
+          commit('AUTH_ERROR', err);
+          localStorage.removeItem("accessToken"); // if the request fails, remove any possible user token if possible
+          console.log('gagal euy');
+          reject(err);
         });
+    });
+  },
+  logout({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      commit("AUTH_LOGOUT");
+      localStorage.removeItem("accessToken"); // clear your user's token from localstorage
+      delete axios.defaults.headers.common['Authorization']
+      resolve();
     });
   },
   // JWT

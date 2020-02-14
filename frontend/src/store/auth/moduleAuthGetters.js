@@ -8,4 +8,9 @@
 ==========================================================================================*/
 
 
-export default {}
+export default {
+  // const getters = {
+    isAuthenticated: state => !!state.token,
+    authStatus: state => state.status,
+  // }
+}

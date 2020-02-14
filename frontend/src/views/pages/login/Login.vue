@@ -56,13 +56,25 @@
 import LoginJwt from "./LoginJWT.vue"
 // import LoginFirebase from "./LoginFirebase.vue"
 import LoginAuth0 from "./LoginAuth0.vue"
+import router from '@/router'
 
 export default {
   components: {
     LoginJwt,
     // LoginFirebase,
     LoginAuth0
-  }
+  },
+  // computed: {
+  //   //ditambahin Putra
+  //   loggedIn(){
+  //       return this.$store.getters['auth/isAuthenticated']
+  //   }
+  // },
+  // mounted() {
+  //     if (this.loggedIn) {
+  //         this.$router.push(router.currentRoute.query.to || '/');
+  //     }
+  // },
 }
 </script>
 

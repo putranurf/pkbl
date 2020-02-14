@@ -12,5 +12,20 @@ import axios from "../../http/axios/index.js"
 export default {
   SET_BEARER(state, accessToken) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
+  },
+
+  AUTH_REQUEST(state) {
+    state.status = 'loading'
+  },
+  AUTH_SUCCESS(state, { token, user}) {
+    state.status = 'success'
+    state.token = token
+    state.user = user
+  },
+  AUTH_ERROR(state) {
+    state.status = 'error'
+  },
+  AUTH_LOGOUT(state) {
+    state.token = "";
   }
 }

@@ -51,8 +51,20 @@ export default {
     validateForm() {
       return !this.errors.any() && this.username != '' && this.password != '';
     },
+    //ditambahin Putra
+    loggedIn(){
+        return this.$store.getters['auth/isAuthenticated']
+    }
+  },
+  //mounted ditambahin Putra
+  mounted() {
+      if (this.loggedIn) {
+          this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"});
+      }
+     
   },
   methods: {
+    
     checkLogin() {
       // console.log(this.$store.state.auth.isUserLoggedIn())
       // If user is already logged in notify
@@ -75,10 +87,10 @@ export default {
     },
     loginJWT() {
       
-      if (!this.checkLogin()) return
+      // if (!this.checkLogin()) return
 
       // Loading
-      this.$vs.loading()
+      // this.$vs.loading()
 
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
@@ -89,12 +101,13 @@ export default {
       }
       
       this.$store.dispatch('auth/login', payload)
-        .then(() => this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"} ))
+        .then(() => 
+            this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"} ))
         .catch(error => {
           this.$vs.loading.close()
           this.$vs.notify({
             title: 'Error',
-            text: error.message,            
+            text: error,            
             iconPack: 'feather',
             icon: 'icon-alert-circle',
             color: 'danger'
