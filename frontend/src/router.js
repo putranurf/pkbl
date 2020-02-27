@@ -65,6 +65,22 @@ const router = new Router({
                 },
 
 
+        //ROUTES BUATAN PUTRA 
+        {
+            path: '/proposal',
+            name: 'input-proposal',
+            component: () => import('@/views/proposal/FormInputProposal.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', active: true },
+                ],
+                pageTitle: 'Proposal',
+                rule: 'editor',
+                requiresAuth: true
+            },
+        },
+
         // =============================================================================
         // Application Routes
         // =============================================================================
@@ -842,6 +858,8 @@ const router = new Router({
                         rule: 'editor'
                     },
                 },
+                
+
                 {
                     path: '/forms/form-validation',
                     name: 'extra-component-form-validation',
