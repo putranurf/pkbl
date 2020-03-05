@@ -11,7 +11,7 @@
 <template>
     <div id="extra-component-form-wizard-demo">
 <template>
-    <vx-card title="Form wizard with number tabs">
+    <vx-card title="Proposal">
         <div class="mt-5">
             <form-wizard color="rgba(var(--vs-primary), 1)" errorColor="rgba(var(--vs-danger), 1)" :title="null" :subtitle="null" finishButtonText="Submit">
 				

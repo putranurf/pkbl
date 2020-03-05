@@ -20,6 +20,15 @@
 
 
 export default [
+
+
+  { 
+    url: '/proposal',
+    name: "Proposal",
+    slug: "proposal",
+    icon: "CreditCardIcon",
+    i18n: "Proposal",
+  },
   // {
   //   url: "/apps/email",
   //   name: "Email",
