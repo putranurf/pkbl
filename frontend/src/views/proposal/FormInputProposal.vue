@@ -645,7 +645,7 @@ import Datepicker from 'vuejs-datepicker';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
 import vSelect from 'vue-select'
-import axios from "axios";
+import axios from "../../axios";
 
 
 // For custom error message
@@ -1126,7 +1126,7 @@ export default {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('step-1').then(result => {
                     if (result) {
-                        alert("Form submitted!");    
+                        // alert("Form submitted!");    
                         let data = {
                           tanggal_lahir_calon_mitra: this.tanggal_lahir_calon_mitra,
                           tempat_lahir_calon_mitra: this.tempat_lahir_calon_mitra,
@@ -1147,7 +1147,16 @@ export default {
                           status_rumah: this.status_rumah,
                           jenis_kelamin: this.jenis_kelamin,
                         };   
-                        console.log(data)             
+                        // console.log(data)        
+                        axios
+                          .post("/api/mitra", data)
+                          .then(response => {                            
+                            console.log(response.data);
+                          })
+                          .catch(e => {
+                            console.log(e);
+                          });
+
                         resolve(true)
                     } else {
                         
@@ -1188,7 +1197,7 @@ export default {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll("step-3").then(result => {
                     if (result) {
-                        alert("Form submitted!");
+                        // alert("Form submitted!");
                         let data = {
                           bentuk_usaha: this.bentuk_usaha,
                           no_tgl_siup: this.no_tgl_siup,
@@ -1217,7 +1226,8 @@ export default {
                           jumlah_aset_usaha: this.jumlah_aset_usaha,
                           jumlah_omzet_per_enam_bulan_usaha: this.jumlah_omzet_per_enam_bulan_usaha,
                         };
-                        console.log(data)
+                        // console.log(data)                          
+                        
                         resolve(true)
                     } else {
                         reject("correct all values");

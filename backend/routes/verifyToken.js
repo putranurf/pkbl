@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 // const db = require("../app/config/db.config.js");
-const config = require("../app/config/jwt/config");
+const config = require("../config/jwt/config");
 // const User = db.user;
 // const sequelize = db.sequelize;
 
