@@ -628,7 +628,8 @@
             </div>
           </div>
           </form>
-        </tab-content> -->        
+        </tab-content> -->
+
 
       </form-wizard>
     </div>
@@ -1123,7 +1124,7 @@ export default {
   methods: {
     validateStep1() {
       return new Promise((resolve, reject) => {
-        this.$validator.validateAll('step-1').then(result => {          
+        this.$validator.validateAll('step-1').then(result => {
           if (result) {            
             let data = {
               tanggal_lahir_calon_mitra: this.tanggal_lahir_calon_mitra,

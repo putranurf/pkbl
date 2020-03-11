@@ -9,6 +9,28 @@
 
 
 <template>
+  <form-wizard @on-complete="onComplete" ref="wizard" color="#e67e22">
+      <tab-content title="Personal details" icon="ti-user">
+        My first tab content
+      </tab-content>
+      <tab-content title="Additional Info" icon="ti-settings">
+        My second tab content
+      </tab-content>
+      <tab-content title="Last step" icon="ti-check">
+        Yuhuuu! This seems pretty damn simple
+      </tab-content>
+      <template slot="footer" scope="props">
+       <div class=wizard-footer-left>
+           <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" :style="props.fillButtonStyle">Previous</wizard-button>
+        </div>
+        <div class="wizard-footer-right">
+          <wizard-button v-if="!props.isLastStep"@click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button>
+          
+          <wizard-button v-else @click.native="alert('Done')" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done' : 'Next'}}</wizard-button>
+        </div>
+       
+      </template>
+    </form-wizard>
   <vx-card title="Form wizard with validation" code-toggler>
 
     <p>Implement Form validation with form wizard using popular <strong> <router-link to="/forms/form-validation">VeeValidate</router-link></strong></p>

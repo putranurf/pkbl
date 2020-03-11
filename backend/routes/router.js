@@ -7,6 +7,7 @@ module.exports = function(app) {
     const mitra = require('../controller/mitra/mitra.js')
 
     app.post('/api/mitra', mitra.setProposalMitra);
+    app.put('/api/datasuamiistri', mitra.setProposalSuamiIstriMitra);
 
 
 };
