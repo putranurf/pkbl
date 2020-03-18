@@ -67,15 +67,94 @@ const router = new Router({
 
         //ROUTES BUATAN PUTRA 
         {
-            path: '/proposal',
-            name: 'input-proposal',
+            path: '/mitra',
+            name: 'input-mitra',
             component: () => import('@/views/proposal/FormInputProposal.vue'),
             meta: {
                 breadcrumb: [
                     { title: 'Home', url: '/' },
-                    { title: 'Proposal', active: true },
+                    { title: 'Proposal', url: '/' },
+                    { title: 'Mitra', active: true },
                 ],
-                pageTitle: 'Proposal',
+                pageTitle: 'Calon Mitra',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/suamiistri',
+            name: 'input-suamiistri',
+            component: () => import('@/views/proposal/FormSuamiIstriMitra.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Suami Istri Mitra', active: true },
+                ],
+                pageTitle: 'Suami Istri Mitra',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/usahamitra',
+            name: 'input-usahamitra',
+            component: () => import('@/views/proposal/FormDataUsahaMitra.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Data Usaha Mitra', active: true },
+                ],
+                pageTitle: 'Data Usaha Mitra',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/jaminan',
+            name: 'input-jaminan',
+            component: () => import('@/views/proposal/FormDataJaminan.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Data Jaminan', active: true },
+                ],
+                pageTitle: 'Data Jaminan',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/pinjaman',
+            name: 'input-pinjaman',
+            component: () => import('@/views/proposal/FormDataPinjaman.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Data Pinjaman', active: true },
+                ],
+                pageTitle: 'Data Pinjaman',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/kelengkapandata',
+            name: 'input-kelengkapandata',
+            component: () => import('@/views/proposal/FormKelengkapanData.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Kelengkapan Data', active: true },
+                ],
+                pageTitle: 'Kelengkapan Data',
+                rule: 'editor',
+                requiresAuth: true
+            },
+            path: '/keuangan',
+            name: 'input-keuangan',
+            component: () => import('@/views/proposal/FormDataKeuangan.vue'),
+            meta: {
+                breadcrumb: [
+                    { title: 'Home', url: '/' },
+                    { title: 'Proposal', url: '/' },                    
+                    { title: 'Data Keuangan', active: true },
+                ],
+                pageTitle: 'Data Keuangan',
                 rule: 'editor',
                 requiresAuth: true
             },

@@ -100,6 +100,10 @@ Vue.use(VueGoogleMaps, {
     },
 })
 
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
+
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'
 Vue.use(VueHammer)
