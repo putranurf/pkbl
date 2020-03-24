@@ -37,58 +37,74 @@ export default [
     i18n: "Dashboard",
   },
   {
-    url: '/proposal',
-    name: "Proposal",
-    tag: "2",
-    tagColor: "warning",
-    icon: "CreditCardIcon",
-    i18n: "Proposal",    
-    submenu: [
-      {
-        url: '/Mitra',
-        name: "Mitra",
-        slug: "mitra",
-        i18n: "Mitra",
-      },
-      {
-        url: '/suamiistri',
-        name: "Suami Istri",
-        slug: "suami-istri",
-        i18n: "Suami Istri",
-      },
-      {
-        url: '/usahamitra',
-        name: "Data Usaha Mitra",
-        slug: "usaha-mitra",
-        i18n: "Data Usaha Mitra",
-      },
-      {
-        url: '/jaminan',
-        name: "Jaminan",
-        slug: "jaminan",
-        i18n: "Jaminan",
-      },
-      {
-        url: '/pinjaman',
-        name: "Pinjaman",
-        slug: "pinjaman",
-        i18n: "Pinjaman",
-      },
-      {
-        url: '/kelengkapandata',
-        name: "Kelengkapan Data",
-        slug: "kelengkapan-data",
-        i18n: "Kelengkapan Data",
-      },
-      {
-        url: '/keuangan',
-        name: "Data Keuangan",
-        slug: "keuangan",
-        i18n: "Keuangan",
-      },
-
-    ]
+    header: "Proposal",
+      icon: "PackageIcon",
+      i18n: "Proposal",
+      items: [
+        // {    
+          // url: '/proposal',
+          // name: "Proposal",
+          // tag: "2",
+          // tagColor: "warning",
+          // icon: "CreditCardIcon",
+          // i18n: "Proposal",    
+          // submenu: [
+            {
+              url: '/Mitra',
+              name: "Mitra",
+              slug: "mitra",
+              i18n: "Mitra",
+              icon: "UserIcon",
+            },
+            {
+              url: '/suamiistri',
+              name: "Suami Istri",
+              slug: "suami-istri",
+              i18n: "Suami Istri",
+              icon: "UsersIcon",              
+            },
+            {
+              url: '/usahamitra',
+              name: "Data Usaha Mitra",
+              slug: "usaha-mitra",
+              i18n: "Data Usaha Mitra",
+              icon: "ListIcon",
+            },
+            {
+              url: '/jaminan',
+              name: "Jaminan",
+              slug: "jaminan",
+              i18n: "Jaminan",
+              icon: "BriefcaseIcon",
+            },
+            {
+              url: '/pinjaman',
+              name: "Pinjaman",
+              slug: "pinjaman",
+              i18n: "Pinjaman",
+              icon: "FileIcon",
+            },
+            {
+              url: '/kelengkapandata',
+              name: "Kelengkapan Data",
+              slug: "kelengkapan-data",
+              i18n: "Kelengkapan Data",
+              icon: "FileTextIcon",
+            },
+            {
+              url: '/keuangan',
+              name: "Data Keuangan",
+              slug: "keuangan",
+              i18n: "Keuangan",
+              icon: "CreditCardIcon",
+            },
+      
+          // ]
+        // },
+      ]
   },
+  
+  
   // {
   //   url: "/apps/email",
   //   name: "Email",
