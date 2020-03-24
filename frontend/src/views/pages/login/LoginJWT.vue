@@ -25,14 +25,30 @@
         class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('password') }}</span>
 
-    <div class="flex flex-wrap justify-between my-5">
+    <!-- <div class="flex flex-wrap justify-between my-5"> -->
         <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</!-->
         <!-- <router-link to="/pages/forgot-password">Forgot Password?</router-link> --> 
-    </div>
+    <!-- </div> -->
     <!-- <div class="flex flex-wrap justify-between mb-6"> -->
       <!-- <vs-button  type="border" @click="registerUser">Register</vs-button> -->
-      <vs-button class="w-full mt-6" :disabled="!validateForm" @click="loginJWT">Login</vs-button>
+      <!-- <vs-button class="w-full mt-6" :disabled="!validateForm" @click="loginJWT">Login</vs-button> -->
     <!-- </div> -->
+
+
+    <div class="flex flex-wrap justify-between my-5">
+        <!-- <vs-checkbox v-model="checkbox_remember_me" class="mb-3">Remember Me</!-->
+          <router-link to="/pages/forgot-password">Lupa Password ?</router-link> 
+        
+          <vs-button class="w-1/2" :disabled="!validateForm" @click="loginJWT">Login</vs-button>
+    </div>
+    <!-- <div class="flex flex-wrap justify-between mb-6"> -->
+      <div class="flex flex-wrap justify-between my-5">
+        <vs-divider></vs-divider>
+        <p>Belum punya Akun ?</p>
+        <vs-button type="border" @click="daftarUser">Klik Disini</vs-button> 
+    </div>
+
+
   </div>
 </template>
 
@@ -68,7 +84,8 @@ export default {
     checkLogin() {
       // console.log(this.$store.state.auth.isUserLoggedIn())
       // If user is already logged in notify
-      if (this.$store.state.auth.isUserLoggedIn()) {
+      // if (this.$store.state.auth.isUserLoggedIn()) {
+        if (localStorage.getItem('accessToken')) {
 
         // Close animation if passed as payload
         // this.$vs.loading.close()
@@ -118,6 +135,12 @@ export default {
     //   if (!this.checkLogin()) return
     //   this.$router.push('/pages/register').catch(() => {})
     // }
+    daftarUser() {
+      // if (!this.checkLogin()) return
+      // this.$router.push('/pages/daftar').catch(() => {})
+
+      this.$router.push('/pages/daftar')
+    }
   }
 }
 

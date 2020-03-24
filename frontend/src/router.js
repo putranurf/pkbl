@@ -66,6 +66,11 @@ const router = new Router({
 
 
         //ROUTES BUATAN PUTRA 
+
+        ///////////////////////
+        //COMPONENTS APLIKASI//
+        ///////////////////////
+
         {
             path: '/mitra',
             name: 'input-mitra',
@@ -159,6 +164,20 @@ const router = new Router({
                 requiresAuth: true
             },
         },
+
+        /////////////////
+        //SEBELUM LOGIN//
+        /////////////////
+
+        {
+            path: '/pages/daftar',
+            name: 'daftar-login-mitra',
+            component: () => import('@/views/pages/daftar/Daftar.vue'),
+            meta: {
+                rule: 'editor'
+            }
+        },
+
 
         // =============================================================================
         // Application Routes

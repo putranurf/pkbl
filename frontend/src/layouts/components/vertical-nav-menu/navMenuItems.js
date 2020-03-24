@@ -41,14 +41,7 @@ export default [
       icon: "PackageIcon",
       i18n: "Proposal",
       items: [
-        // {    
-          // url: '/proposal',
-          // name: "Proposal",
-          // tag: "2",
-          // tagColor: "warning",
-          // icon: "CreditCardIcon",
-          // i18n: "Proposal",    
-          // submenu: [
+       
             {
               url: '/Mitra',
               name: "Mitra",
@@ -98,9 +91,6 @@ export default [
               i18n: "Keuangan",
               icon: "CreditCardIcon",
             },
-      
-          // ]
-        // },
       ]
   },
   
