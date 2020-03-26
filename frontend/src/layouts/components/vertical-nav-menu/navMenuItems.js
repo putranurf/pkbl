@@ -43,7 +43,7 @@ export default [
       items: [
        
             {
-              url: '/Mitra',
+              url: '/mitra',
               name: "Mitra",
               slug: "mitra",
               i18n: "Mitra",
@@ -94,6 +94,57 @@ export default [
       ]
   },
   
+  {
+    header: "Kemitraan",
+      icon: "UsersIcon",
+      i18n: "Kemitraan",
+      items: [
+            {
+              // url: '/Mitra',
+              name: "List Proposal",
+              slug: "list-proposal",
+              i18n: "List Proposal",
+              icon: "ListIcon",
+            },
+            {
+              // url: '/Mitra',
+              name: "Survey",
+              slug: "survey",
+              i18n: "Survey",
+              icon: "CheckCircleIcon",
+            },
+            {
+              // url: '/suamiistri',
+              name: "Usulan Peminjaman Dana",
+              slug: "usulan-peminjaman-dana",
+              i18n: "Usulan Peminjaman Dana",
+              icon: "AlignJustifyIcon",              
+            },         
+      ]
+  },
+
+  {
+    header: "Settings",
+      icon: "SettingIcon",
+      i18n: "Settings",
+      items: [
+       
+            {
+              // url: '/Mitra',
+              name: "User Settings",
+              slug: "user-settings",
+              i18n: "User Settings",
+              icon: "SettingsIcon",
+            },
+            {
+              // url: '/suamiistri',
+              name: "Role Menu",
+              slug: "role-menu",
+              i18n: "Role Menu",
+              icon: "AlignJustifyIcon",              
+            },         
+      ]
+  },
   
   // {
   //   url: "/apps/email",

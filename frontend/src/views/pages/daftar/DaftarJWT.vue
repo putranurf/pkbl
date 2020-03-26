@@ -55,9 +55,13 @@ Author URL: http://www.themeforest.net/user/pixinvent
       class="w-full mt-6" />
     <span class="text-danger text-sm">{{ errors.first('confirm_password') }}</span>
 
-    <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">I accept the terms & conditions.</vs-checkbox>
-    <vs-button  type="border" to="/pages/login" class="mt-6">Login</vs-button>
-    <vs-button class="float-right mt-6" @click="registerUserJWt" :disabled="!validateForm">Register</vs-button>
+    <!-- Segala bentuk apapun dalam Akun PKBL harus dipertanggung jawabkan dan siap menerima sanksi jika melakukan kesalahan diluar aturan. -->
+    <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">
+    Saya setuju membuat Akun. 
+    </vs-checkbox>
+    
+    <vs-button  type="border" to="/pages/login" class="mt-6">Kembali</vs-button>
+    <vs-button class="float-right mt-6" @click="registerUserJWt" :disabled="!validateForm">Daftar</vs-button>
   </div>
 </template>
 
@@ -69,7 +73,7 @@ export default {
             email: '',
             password: '',
             confirm_password: '',
-            isTermsConditionAccepted: true
+            isTermsConditionAccepted: false
         }
     },
     computed: {

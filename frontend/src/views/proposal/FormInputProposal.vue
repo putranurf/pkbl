@@ -11,28 +11,31 @@
     <template>
   <div id="extra-component-form-wizard-demo">
     <template>
-      <vx-card title="Proposal">
-        <div class="mt-5">
-          <form-wizard @on-complete="onComplete" ref="wizard" color="#e67e22">
-            <tab-content
-              title="Data Pribadi Pemohon/Calon Mitra Binaan"
-              class="mb-5"
-              :before-change="validateStep1"
-            >
-              <!-- <form data-vv-scope="step-1"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Nama (Sesuai KTP)"
+      <vx-card title="Calon Mitra">
+       
+            <form>               
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Nama (Sesuai KTP)</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                <vs-input
                       v-model="nama_ktp_calon_mitra"
                       class="w-full"
                       name="nama_ktp_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.nama_ktp_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <ul class="demo-alignment">
+                    <span class="text-danger">{{ errors.first('nama_ktp_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Jenis Kelamin</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                 <ul class="">
                       <!-- <span>Status Rumah</span> -->
                       <li>
                         <vs-radio v-model="jenis_kelamin" vs-value="pria">Pria</vs-radio>
@@ -42,100 +45,146 @@
                       </li>
                       <!-- <span class="text-danger">{{ errors.first('step-1.jenis_kelamin') }}</span> -->
                     </ul>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="NO. KTP"
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>No. KTP</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                 <vs-input
                       v-model="no_ktp_calon_mitra"
                       class="w-full"
                       name="no_ktp_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.no_ktp_calon_mitra') }}</span>
-                  </div>
+                    <span class="text-danger">{{ errors.first('no_ktp_calon_mitra') }}</span>
+              </div>
+            </div>
 
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Tempat Lahir"
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Tempat Lahir</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                <vs-input
                       v-model="tempat_lahir_calon_mitra"
                       class="w-full"
                       name="tempat_lahir_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.tempat_lahir_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-textarea
+                    <span class="text-danger">{{ errors.first('tempat_lahir_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Alamat</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                <vs-textarea
                       v-model="alamat_calon_mitra"
-                      label="Alamat"
-                      class="mt-10 mb-0"
                       rows="3"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.alamat_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <label for class="vs-input--label">Tanggal Lahir</label>
-                    <flat-pickr
-                      label="Tanggal Lahir"
+                    <span class="text-danger">{{ errors.first('alamat_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Tanggal Lahir</span>
+              </div>
+              <div class="vx-col sm:w-1/4 w-full">
+                <flat-pickr
                       class="vs-input--input normal flatpickr-input"
                       v-model="tanggal_lahir_calon_mitra"
                     />
-                    <!-- <span class="text-danger">{{ errors.first('step-1.tanggal_lahir_calon_mitra') }}</span> -->
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No Rumah"
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>No. Rumah</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                <vs-input
                       v-model="no_rumah_calon_mitra"
                       class="w-full"
                       name="no_rumah_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.no_rumah_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RT"
+                    <span class="text-danger">{{ errors.first('no_rumah_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>RT</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                 <vs-input
                       v-model="rt_calon_mitra"
                       class="w-full"
                       name="rt_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.rt_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RW"
+                    <span class="text-danger">{{ errors.first('rt_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>RW</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                 <vs-input
                       v-model="rw_calon_mitra"
                       class="w-full"
                       name="rw_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.rw_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kelurahan"
+                    <span class="text-danger">{{ errors.first('rw_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Kelurahan</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                  <vs-input
                       v-model="kelurahan_calon_mitra"
                       class="w-full"
                       name="kelurahan_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.kelurahan_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kecamatan"
+                    <span class="text-danger">{{ errors.first('kelurahan_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Kecamatan</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                   <vs-input
                       v-model="kecamatan_calon_mitra"
                       class="w-full"
                       name="kecamatan_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.kecamatan_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kabupaten/Kota"
+                    <span class="text-danger">{{ errors.first('kecamatan_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Kabupaten/Kota</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                   <vs-input
                       v-model="kabupaten_kota_calon_mitra"
                       class="w-full"
                       name="kabupaten_kota_calon_mitra"
@@ -143,51 +192,76 @@
                     />
                     <span
                       class="text-danger"
-                    >{{ errors.first('step-1.kabupaten_kota_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Provinsi"
+                    >{{ errors.first('kabupaten_kota_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Provinsi</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                   <vs-input
                       v-model="provinsi_calon_mitra"
                       class="w-full"
                       name="provinsi_calon_mitra"
                       v-validate="'required'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.provinsi_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kode POS"
+                    <span class="text-danger">{{ errors.first('provinsi_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Kode POS</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                   <vs-input
                       v-model="kode_pos_calon_mitra"
                       class="w-full"
                       name="kode_pos_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.kode_pos_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
+                    <span class="text-danger">{{ errors.first('kode_pos_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>No. Telepon Rumah</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
                     <vs-input
-                      label="No. Telepon Rumah"
                       v-model="no_telp_rumah_calon_mitra"
                       class="w-full"
                       name="no_telp_rumah_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.no_telp_rumah_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. HP"
+                    <span class="text-danger">{{ errors.first('no_telp_rumah_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>No. HP</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                     <vs-input
                       v-model="no_hp_calon_mitra"
                       class="w-full"
                       name="no_hp_calon_mitra"
                       v-validate="'required|numeric'"
                     />
-                    <span class="text-danger">{{ errors.first('step-1.no_hp_calon_mitra') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <label for class="vs-input--label">Pendidikan Terakhir</label>
-                    <vs-select
+                    <span class="text-danger">{{ errors.first('no_hp_calon_mitra') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Pendidikan Terakhir</span>
+              </div>
+              <div class="vx-col sm:w-1/6 w-full">
+                      <vs-select
                       autocomplete
                       class="w-full select-large"
                       v-model="pendidikan_terakhir"
@@ -199,11 +273,16 @@
                         v-for="(item,index) in pendidikan"
                       />
                     </vs-select>
-                    <form <span class="text-danger">{{ errors.first('step-1.pendidikan_terakhir') }}</span> -->
-                  </div>
-                  <div class="vx-col w-full mt-5">
-                    <ul class="demo-alignment">
-                      <span>Status Rumah</span>
+                    <span class="text-danger">{{ errors.first('pendidikan_terakhir') }}</span>
+              </div>
+            </div>
+
+            <div class="vx-row mb-6">
+              <div class="vx-col sm:w-1/4 w-full">
+                <span>Status Rumah</span>
+              </div>
+              <div class="vx-col sm:w-2/3 w-full">
+                      <ul class="">
                       <li>
                         <vs-radio v-model="status_rumah" vs-value="milik_sendiri">Milik Sendiri</vs-radio>
                       </li>
@@ -217,912 +296,15 @@
                         <vs-radio v-model="status_rumah" vs-value="sewa">Sewa</vs-radio>
                       </li>
                     </ul>
-                  </div>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-
-            <tab-content
-              title="Data Suami/Istri Pemohon"
-              class="mb-5"
-              icon="feather icon-user"
-              :before-change="validateStep2"
-            >
-              <vs-divider />
-              <!-- <form data-vv-scope="step-2"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Nama (Sesuai KTP)"
-                      v-model="nama_ktp_suami_istri_calon"
-                      class="w-full"
-                      name="nama_ktp_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.nama_ktp_suami_istri_calon') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-textarea
-                      v-model="alamat_suami_istri_calon"
-                      label="Alamat"
-                      class="mt-10 mb-0"
-                      rows="3"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-2.alamat_suami_istri_calon') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No Rumah"
-                      v-model="no_rumah_suami_istri_calon"
-                      class="w-full"
-                      name="no_rumah_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.no_rumah_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RT"
-                      v-model="rt_suami_istri_calon"
-                      class="w-full"
-                      name="rt_suami_istri_calon"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-2.rt_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RW"
-                      v-model="rw_suami_istri_calon"
-                      class="w-full"
-                      name="rw_suami_istri_calon"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-2.rw_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kelurahan"
-                      v-model="kelurahan_suami_istri_calon"
-                      class="w-full"
-                      name="kelurahan_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.kelurahan_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kecamatan"
-                      v-model="kecamatan_suami_istri_calon"
-                      class="w-full"
-                      name="kecamatan_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.kecamatan_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kabupaten/Kota"
-                      v-model="kabupaten_kota_suami_istri_calon"
-                      class="w-full"
-                      name="kabupaten_kota_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.kabupaten_kota_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Provinsi"
-                      v-model="provinsi_suami_istri_calon"
-                      class="w-full"
-                      name="provinsi_suami_istri_calon"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.provinsi_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kode POS"
-                      v-model="kode_pos_suami_istri_calon"
-                      class="w-full"
-                      name="kode_pos_suami_istri_calon"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.kode_pos_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. Telepon Rumah"
-                      v-model="no_telp_rumah_suami_istri_calon"
-                      class="w-full"
-                      name="no_telp_rumah_suami_istri_calon"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-2.no_telp_rumah_suami_istri_calon') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. HP"
-                      v-model="no_hp_suami_istri_calon"
-                      class="w-full"
-                      name="no_hp_suami_istri_calon"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-2.no_hp_suami_istri_calon') }}</span>
-                  </div>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-
-            <tab-content
-              title="Data Usaha Pemohon"
-              class="mb-5"
-              icon="feather icon-briefcase"
-              :before-change="validateStep3"
-            >
-              <vs-divider />
-              <!-- <form data-vv-scope="step-3"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-full mt-5">
-                    <ul class="demo-alignment">
-                      <span>Bentuk Usaha</span>
-                      <li>
-                        <vs-radio v-model="bentuk_usaha" vs-value="berbadan_hukum">Berbadan Hukum</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="bentuk_usaha" vs-value="perorangan">Perorangan</vs-radio>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No & Tgl SIUP/Ijin (Bila ada)"
-                      v-model="no_tgl_siup"
-                      class="w-full"
-                      name="no_tgl_siup"
-                    />
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="NPWP (Bila ada)"
-                      v-model="npwp"
-                      class="w-full"
-                      name="npwp"
-                      v-validate="'numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.npwp') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <label for class="vs-input--label">Mulai Usaha</label>
-                    <flat-pickr
-                      label="Mulai Usaha"
-                      class="vs-input--input normal flatpickr-input"
-                      v-model="mulai_usaha"
-                    />
-                    <!-- <span class="text-danger">{{ errors.first('step-1.tanggal_lahir_calon_mitra') }}</span> -->
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Nama Usaha"
-                      v-model="nama_usaha"
-                      class="w-full"
-                      name="nama_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.nama_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Jenis Usaha"
-                      v-model="jenis_usaha"
-                      class="w-full"
-                      name="jenis_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.jenis_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-full mt-5">
-                    <ul class="demo-alignment">
-                      <span>Sektor Usaha</span>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="industri">Industri</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="perdagangan">Perdagangan</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="pertanian">Pertanian</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="peternakan">Peternakan</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="perkebunan">Perkebunan</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="perikanan">Perikanan</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="jasa">Jasa</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="sektor_usaha" vs-value="jasa_lainnya">Jasa Lainnya</vs-radio>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-textarea
-                      v-model="alamat_usaha"
-                      label="Alamat Usaha"
-                      class="mt-10 mb-0"
-                      rows="3"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.alamat_usaha') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kelurahan"
-                      v-model="kelurahan_usaha"
-                      class="w-full"
-                      name="kelurahan_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.kelurahan_usaha') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Nomor"
-                      v-model="nomor_alamat_usaha"
-                      class="w-full"
-                      name="nomor_alamat_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.nomor_alamat_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RT"
-                      v-model="rt_usaha"
-                      class="w-full"
-                      name="rt_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.rt_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="RW"
-                      v-model="rw_usaha"
-                      class="w-full"
-                      name="rw_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.rw_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kecamatan"
-                      v-model="kecamatan_usaha"
-                      class="w-full"
-                      name="kecamatan_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.kecamatan_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kode POS"
-                      v-model="kode_pos_usaha"
-                      class="w-full"
-                      name="kode_pos_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.kode_pos_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Kabupaten/Kota"
-                      v-model="kabupaten_kota_usaha"
-                      class="w-full"
-                      name="kabupaten_kota_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.kabupaten_kota_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Provinsi"
-                      v-model="provinsi_usaha"
-                      class="w-full"
-                      name="provinsi_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.provinsi_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. Telp Usaha"
-                      v-model="no_telp_usaha"
-                      class="w-full"
-                      name="no_telp_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.no_telp_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. HP"
-                      v-model="no_hp_usaha"
-                      class="w-full"
-                      name="no_hp_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.no_hp_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-full mt-5">
-                    <ul class="demo-alignment">
-                      <span>Status Tempat Usaha</span>
-                      <li>
-                        <vs-radio
-                          v-model="status_tempat_usaha"
-                          vs-value="milik_sendiri"
-                        >Milik Sendiri</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="status_tempat_usaha" vs-value="keluarga">Keluarga</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="status_tempat_usaha" vs-value="kontrak">Kontrak</vs-radio>
-                      </li>
-                      <li>
-                        <vs-radio v-model="status_tempat_usaha" vs-value="sewa">Sewa</vs-radio>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="vx-col w-1/2 mt-5">
-                    <label for class="vs-input--label">Masa Laku Sewa s.d</label>
-                    <flat-pickr
-                      label="Masa Laku Sewa s.d"
-                      class="vs-input--input normal flatpickr-input"
-                      v-model="masa_laku_sewa_usaha"
-                    />
-                    <!-- <span class="text-danger">{{ errors.first('step-1.tanggal_lahir_calon_mitra') }}</span> -->
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Nama Bank"
-                      v-model="nama_bank_usaha"
-                      class="w-full"
-                      name="nama_bank_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.nama_bank_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="No. Rekening"
-                      v-model="no_rekening_usaha"
-                      class="w-full"
-                      name="no_rekening_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.no_rekening_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Atas Nama"
-                      v-model="atas_nama_usaha"
-                      class="w-full"
-                      name="atas_nama_usaha"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.atas_nama_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Jumlah SDM (Orang)"
-                      v-model="jumlah_sdm_usaha"
-                      class="w-full"
-                      name="jumlah_sdm_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.jumlah_sdm_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Jumlah Aset (Rp)"
-                      v-model="jumlah_aset_usaha"
-                      class="w-full"
-                      name="jumlah_aset_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-3.jumlah_aset_usaha') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2 mt-5">
-                    <vs-input
-                      label="Jumlah Omzet/6 Bulan (Rp)"
-                      v-model="jumlah_omzet_per_enam_bulan_usaha"
-                      class="w-full"
-                      name="jumlah_omzet_per_enam_bulan_usaha"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-3.jumlah_omzet_per_enam_bulan_usaha') }}</span>
-                  </div>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-
-            <!-- tab 4 content -->
-            <tab-content
-              title="Data Jaminan Tanah/Bangunan/Kendaraan"
-              class="mb-5"
-              icon="feather icon-image"
-              :before-change="validateStep4"
-            >
-              <vs-divider />
-              <!-- <form data-vv-scope="step-4"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Jaminan Tanah/Bangunan"
-                      v-model="jaminan_tanah_bangunan"
-                      class="w-full mt-5"
-                      name="jaminan_tanah_bangunan"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.jaminan_tanah_bangunan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Atas Nama Tanah/Bangunan"
-                      v-model="atas_nama_tanah_bangunan"
-                      class="w-full mt-5"
-                      name="atas_nama_tanah_bangunan"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.atas_nama_tanah_bangunan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="No Sertifikat Tanah/Bangunan"
-                      v-model="no_sertifikat_tanah_bangunan"
-                      class="w-full mt-5"
-                      name="no_sertifikat_tanah_bangunan"
-                      v-validate="'required'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-4.no_sertifikat_tanah_bangunan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-textarea
-                      v-model="alamat_tanah_bangunan"
-                      label="Alamat Tanah/Bangunan"
-                      class="mt-10 mb-0"
-                      rows="3"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.alamat_tanah_bangunan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Luas Tanah/Bangunan"
-                      v-model="luas_tanah_bangunan"
-                      class="w-full mt-5"
-                      name="luas_tanah_bangunan"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.luas_tanah_bangunan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Harga (Rp) Tanah/Bangunan"
-                      v-model="harga_tanah_bangunan"
-                      class="w-full mt-5"
-                      name="harga_tanah_bangunan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.harga_tanah_bangunan') }}</span>
-                  </div>
-                  <vs-divider>Jaminan Kendaraan</vs-divider>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Jaminan Kendaraan"
-                      v-model="jaminan_kendaraan"
-                      class="w-full mt-5"
-                      name="jaminan_kendaraan"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.jaminan_kendaraan') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="No BPKP Kendaraan"
-                      v-model="no_bpkp_kendaraan"
-                      class="w-full mt-5"
-                      name="no_bpkp_kendaraan"
-                      v-validate="'required'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-4.no_bpkp_kendaraan') }}</span>
-                  </div>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-
-            <!-- tab 5 content -->
-            <tab-content
-              title="Data Pinjaman"
-              class="mb-5"
-              icon="feather icon-image"
-              :before-change="validateStep5"
-            >
-              <vs-divider />
-              <!-- <form data-vv-scope="step-5"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Rencana Pinjaman Modal Kerja"
-                      v-model="rencana_pinjaman_modal_kerja"
-                      class="w-full mt-5"
-                      name="rencana_pinjaman_modal_kerja"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.rencana_pinjaman_modal_kerja') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Pinjaman Modal Kerja yang Dibutuhkan"
-                      v-model="pinjaman_modal_kerja_dibutuhkan"
-                      class="w-full mt-5"
-                      name="pinjaman_modal_kerja_dibutuhkan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.pinjaman_modal_kerja_dibutuhkan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Rencana Pinjaman Modal Investasi"
-                      v-model="rencana_pinjaman_modal_investasi"
-                      class="w-full mt-5"
-                      name="rencana_pinjaman_modal_investasi"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.rencana_pinjaman_modal_investasi') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Pinjaman Modal Investasi yang Dibutuhkan"
-                      v-model="pinjaman_modal_investasi_dibutuhkan"
-                      class="w-full mt-5"
-                      name="pinjaman_modal_investasi_dibutuhkan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.pinjaman_modal_investasi_dibutuhkan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Rencana Pinjaman Modal Khusus"
-                      v-model="rencana_pinjaman_modal_khusus"
-                      class="w-full mt-5"
-                      name="rencana_pinjaman_modal_khusus"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.rencana_pinjaman_modal_khusus') }}</span>
-                  </div>
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Pinjaman Modal Khusus yang Dibutuhkan"
-                      v-model="pinjaman_modal_khusus_dibutuhkan"
-                      class="w-full mt-5"
-                      name="pinjaman_modal_khusus_dibutuhkan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-5.pinjaman_modal_khusus_dibutuhkan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Jumlah Pinjaman yang Dibutuhkan"
-                      v-model="jumlah_pinjaman"
-                      class="w-full mt-5"
-                      name="jumlah_pinjaman"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-5.jumlah_pinjaman') }}</span>
-                  </div>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-
-            <!-- tab 6 content -->
-            <tab-content
-              title="Kelengkapan Data"
-              class="mb-5"
-              icon="feather icon-image"
-              :before-change="validateStep6"
-            >
-              <!-- <form data-vv-scope="step-6"> -->
-                <!-- <div class="vx-row"> -->
-                <template lang="html">
-                  <div>
-                    <vs-table :data="users">
-                      <template slot="thead">
-                        <vs-th>Jenis</vs-th>
-                        <vs-th>Unggah File</vs-th>
-                        <vs-th>Aksi</vs-th>
-                      </template>
-                      <template>
-                        <vs-tr>
-                          <vs-td>Pas photo Pemohon Ukuran 3x4</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                        <vs-tr>
-                          <vs-td>Pas photo Pemohon Ukuran 3x4</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                        <vs-tr>
-                          <vs-td>Photo Copy KTP Pemohon</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                        <vs-tr>
-                          <vs-td>Photo Copy KTP Pemohon</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                        <vs-tr>
-                          <vs-td>Photo Kegiatan Usaha Ukuran 2R</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                        <vs-tr>
-                          <vs-td>Denah Lokasi Tempat Usaha</vs-td>
-                          <vs-td>
-                            <input type="file" @change="onFileChanged" />
-                          </vs-td>
-                          <vs-td>
-                            <vs-button
-                              color="success"
-                              type="filled"
-                              @click="onUpload"
-                              icon-pack="feather"
-                              icon="icon-upload"
-                            >Upload</vs-button>
-                          </vs-td>
-                        </vs-tr>
-                      </template>
-                    </vs-table>
-                  </div>
-                </template>
-                <!-- </div> -->
-              <!-- </form> -->
-            </tab-content>
-
-            <!-- tab 7 content -->
-            <tab-content
-              title="Data Keuangan"
-              class="mb-5"
-              icon="feather icon-image"
-              :before-change="validateStep7"
-            >
-              <!-- <form data-vv-scope="step-7"> -->
-                <div class="vx-row">
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Uang KAS"
-                      v-model="uang_kas_keuangan"
-                      class="w-full mt-5"
-                      name="uang_kas_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-7.uang_kas_keuangan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Uang di Bank/Tabungan"
-                      v-model="uang_di_bank"
-                      class="w-full mt-5"
-                      name="uang_di_bank"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-7.uang_di_bank') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Piutang"
-                      v-model="piutang_keuangan"
-                      class="w-full mt-5"
-                      name="uang_di_bank"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-7.uang_di_bank') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Hutang Bank/Kredit"
-                      v-model="hutang_bank_keuangan"
-                      class="w-full mt-5"
-                      name="hutang_bank_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span class="text-danger">{{ errors.first('step-7.hutang_bank_keuangan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Nilai Peralatan Usaha"
-                      v-model="nilai_peralatan_usaha_keuangan"
-                      class="w-full mt-5"
-                      name="nilai_peralatan_usaha_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-7.nilai_peralatan_usaha_keuangan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Nilai Omzet per Bulan"
-                      v-model="nilai_omzet_per_bulan_keuangan"
-                      class="w-full mt-5"
-                      name="nilai_omzet_per_bulan_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-7.nilai_omzet_per_bulan_keuangan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Biaya Operasional per Bulan"
-                      v-model="biaya_operasional_per_bulan_keuangan"
-                      class="w-full mt-5"
-                      name="biaya_operasional_per_bulan_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-7.biaya_operasional_per_bulan_keuangan') }}</span>
-                  </div>
-
-                  <div class="vx-col w-1/2">
-                    <vs-input
-                      label="Biaya Non Operasional"
-                      v-model="biaya_non_operasional_keuangan"
-                      class="w-full mt-5"
-                      name="biaya_non_operasional_keuangan"
-                      v-validate="'required|numeric'"
-                    />
-                    <span
-                      class="text-danger"
-                    >{{ errors.first('step-7.biaya_non_operasional_keuangan') }}</span>
-                  </div>
-                  <vs-alert
-                    active="true"
-                    class="mt-5"
-                    icon-pack="feather"
-                    icon="icon-star"
-                  >Catatan : Data Keuangan (Nilai Peralatan Usaha, Nilai Omzet per Bulan, Biaya Operasional per Bulan) lebih rinci dapat dilihat di lampiran</vs-alert>
-                </div>
-              <!-- </form> -->
-            </tab-content>
-            <template slot="footer" scope="props">
-              <div class="wizard-footer-left">
-                <!-- <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" :style="props.fillButtonStyle">Previous</wizard-button> -->
               </div>
-              <div class="wizard-footer-right">
-                <wizard-button
-                  v-if="!props.isLastStep"
-                  @click.native="props.nextTab()"
-                  class="wizard-footer-right"
-                  :style="props.fillButtonStyle"
-                >Next</wizard-button>
-                <!-- <wizard-button v-if="!props.isLastStep"@click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button> -->
+            </div>
 
-                <!-- <wizard-button v-else @click="alert('Done')" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Done' : 'Next'}}</wizard-button> -->
-                <wizard-button @click="finishButton()" class="wizard-footer-right finish-button">{{props.isLastStep ? 'Done' : 'Next'}}</wizard-button>
+            <div class="vx-row">
+              <div class="vx-col sm:w-3/4 w-full ml-auto">
+                 <vs-button type="filled" @click.prevent="validateStep1" class="mr-3 mb-2">Submit</vs-button>
               </div>
-            </template>
-          </form-wizard>
-        </div>
+            </div>
+            </form>            
       </vx-card>
     </template>
   </div>
@@ -1622,9 +804,9 @@ export default {
       }
       return false;
     },
-    validateStep1() {
-      return new Promise((resolve, reject) => {
-        this.$validator.validateAll("step-1").then(result => {
+    validateStep1() {      
+      // return new Promise((resolve, reject) => {
+        this.$validator.validateAll().then(result => {
           if (result) {
             let data = {
               tanggal_lahir_calon_mitra: this.tanggal_lahir_calon_mitra,
@@ -1646,21 +828,20 @@ export default {
               status_rumah: this.status_rumah,
               jenis_kelamin: this.jenis_kelamin
             };
-            axios
-              .post("/api/mitra", data)
-              .then(response => {
-                console.log(response.data);
-              })
-              .catch(e => {
-                console.log(e);
-              });
+            // axios
+            //   .post("/api/mitra", data)
+            //   .then(response => {
+            //     console.log(response.data);
+            //   })
+            //   .catch(e => {
+            //     console.log(e);
+            //   });
+            alert('submitted')
 
-            resolve(true);
-          } else {
-            reject("correct all values");
-          }
+            // resolve(true);
+          } 
         });
-      });
+      // });
     },
     validateStep2() {
       return new Promise((resolve, reject) => {
