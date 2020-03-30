@@ -4,10 +4,13 @@
 
 module.exports = function(app) { 
 
-    const mitra = require('../controller/mitra/mitra.js')
+    const mitra  = require('../controller/mitra/mitra.js')
+    const daftar = require('../controller/daftar/daftar.js')
 
     app.post('/api/mitra', mitra.setProposalMitra);
     app.put('/api/datasuamiistri', mitra.setProposalSuamiIstriMitra);
+    app.post('/api/daftarUser', daftar.daftarUser);
+    app.get('/api/verifyUser/:id', daftar.verifyUser);
 
 
 };

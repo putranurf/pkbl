@@ -376,6 +376,8 @@ export default {
         });
     });
   },
+
+
   registerUserJWT({ commit }, payload) {
     const {
       displayName,
@@ -407,6 +409,60 @@ export default {
         });
     });
   },
+
+
+  daftarUser({ commit }, payload) {
+    const {
+      username,
+      email,
+      password,
+      confirmPassword
+    } = payload.userDetails;
+
+    return new Promise((resolve, reject) => {
+      // Check confirm password
+      if (password !== confirmPassword) {
+        reject({ message: "Password doesn't match. Please try again." });
+      }
+
+      // jwt
+      //   .registerUser(username, email, password)
+      //   .then(response => {
+      //     // Redirect User
+      //     router.push(router.currentRoute.query.to || "/");
+
+      //     // Update data in localStorage
+      //     localStorage.setItem("accessToken", response.data.accessToken);
+      //     commit("UPDATE_USER_INFO", response.data.userData, { root: true });
+
+      //     resolve(response);
+      //   })
+      //   .catch(error => {
+      //     reject(error);
+      //   });
+
+      // console.log('masuk vuex')
+      axios
+          .post('api/daftarUser', payload.userDetails)
+          .then(response => {
+          // Redirect User
+          router.push(router.currentRoute.query.to || "/");
+
+          // // Update data in localStorage
+          // localStorage.setItem("accessToken", response.data.accessToken);
+          // commit("UPDATE_USER_INFO", response.data.userData, { root: true });
+
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+      });
+
+
+    });
+  },
+
+
   fetchAccessToken() {
     return new Promise(resolve => {
       jwt.refreshToken().then(response => {

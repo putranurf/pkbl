@@ -13,12 +13,12 @@ Author URL: http://www.themeforest.net/user/pixinvent
     <vs-input
       v-validate="'required|alpha_dash|min:3'"
       data-vv-validate-on="blur"
-      label-placeholder="Name"
-      name="displayName"
-      placeholder="Name"
-      v-model="displayName"
+      label-placeholder="Username"
+      name="username"
+      placeholder="Username"
+      v-model="username"
       class="w-full" />
-    <span class="text-danger text-sm">{{ errors.first('displayName') }}</span>
+    <span class="text-danger text-sm">{{ errors.first('username') }}</span>
 
     <vs-input
       v-validate="'required|email'"
@@ -61,7 +61,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
     </vs-checkbox>
     
     <vs-button  type="border" to="/pages/login" class="mt-6">Kembali</vs-button>
-    <vs-button class="float-right mt-6" @click="registerUserJWt" :disabled="!validateForm">Daftar</vs-button>
+    <vs-button class="float-right mt-6" @click="daftarUser" :disabled="!validateForm">Daftar</vs-button>
   </div>
 </template>
 
@@ -69,16 +69,22 @@ Author URL: http://www.themeforest.net/user/pixinvent
 export default {
     data() {
         return {
-            displayName: '',
+            username: '',
             email: '',
             password: '',
             confirm_password: '',
             isTermsConditionAccepted: false
+
+            // displayName: '',
+            // email: '',
+            // password: '',
+            // confirm_password: '',
+            // isTermsConditionAccepted: false
         }
     },
     computed: {
         validateForm() {
-            return !this.errors.any() && this.displayName != '' && this.email != '' && this.password != '' && this.confirm_password != '' && this.isTermsConditionAccepted === true;
+            return !this.errors.any() && this.username != '' && this.email != '' && this.password != '' && this.confirm_password != '' && this.isTermsConditionAccepted === true;
         }
     },
     methods: {
@@ -101,20 +107,22 @@ export default {
           }
           return true
         },
-        registerUserJWt() {
+        daftarUser() {
             // If form is not validated or user is already login return
-            if (!this.validateForm || !this.checkLogin()) return
+            // if (!this.validateForm || !this.checkLogin()) return
+            // if (!this.validateForm) return
 
             const payload = {
               userDetails: {
-                displayName: this.displayName,
+                username: this.username,
                 email: this.email,
                 password: this.password,
                 confirmPassword: this.confirm_password
               },
               notify: this.$vs.notify
             }
-            this.$store.dispatch('auth/registerUserJWT', payload)
+            // this.$store.dispatch('auth/registerUserJWT', payload)
+            this.$store.dispatch('auth/daftarUser', payload)
         }
     }
 }
