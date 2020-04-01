@@ -92,10 +92,18 @@ exports.daftarUser = (async (req, res) => {
 exports.verifyUser = (async (req, res) => {
   console.log(req.protocol+":/"+req.get('host'));
   if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
+      let date        = new Date();    
+      let year        = date.getFullYear();
+      let month       = date.getMonth() + 1;
+      let day         = date.getDate();
+      let hours       = date.getHours();
+      let minutes     = date.getMinutes();
+      let seconds     = date.getSeconds();
+      let datestring  = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds
       const sql =
-        "UPDATE pk_auth_verify SET verify = true WHERE username=$1;   ";
+        "UPDATE pk_auth_verify SET verify = true, updated_at = $2  WHERE username=$1;   ";
       const result = await model.query(sql, {
-        bind: [req.params.username],
+        bind: [req.params.username, datestring],
         type: model.QueryTypes.INSERT
       })
       console.log("Domain is matched. Information is from Authentic email");
