@@ -58,8 +58,8 @@ import router from '@/router'
 export default {
   data() {
     return {
-      username: '06010',
-      password: 'carotid22',
+      username: '',
+      password: '',
       checkbox_remember_me: false
     }
   },
@@ -114,22 +114,24 @@ export default {
         userDetails: {
           username: this.username,
           password: this.password
-        }
+        },
+        notify: this.$vs.notify
       }
       
       this.$store.dispatch('auth/login', payload)
         .then(() => 
             this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"} ))
-        .catch(error => {
-          this.$vs.loading.close()
-          this.$vs.notify({
-            title: 'Error',
-            text: error,            
-            iconPack: 'feather',
-            icon: 'icon-alert-circle',
-            color: 'danger'
-          })
-        })
+        // .catch(error => {
+        //   this.$vs.loading.close()
+        //   this.$vs.notify({
+        //     title: error,
+        //     // text: error,            
+        //     iconPack: 'feather',
+        //     icon: 'icon-alert-circle',
+        //     color: 'danger'
+        //   })
+        // })
+        .catch(err => console.log('error: '+ err))
     },
     // registerUser() {
     //   if (!this.checkLogin()) return

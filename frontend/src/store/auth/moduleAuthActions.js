@@ -320,8 +320,17 @@ export default {
         })
         .catch(err => {
           commit('AUTH_ERROR', err);
-          localStorage.removeItem("accessToken"); // if the request fails, remove any possible user token if possible
-          console.log('gagal euy');
+          localStorage.removeItem("accessToken"); // if the request fails, remove any possible user token if possible          
+          payload.notify({
+              time: 2500,
+              title: err.response.data.title,
+              // text: err.message,
+              text: err.response.data.text,
+              iconPack: 'feather',
+              icon: 'icon-alert-circle',
+              color: 'danger'
+          })
+
           reject(err);
         });
     });
@@ -410,7 +419,7 @@ export default {
     });
   },
 
-
+  //Buatan Putra
   daftarUser({ commit }, payload) {
     const {
       username,
@@ -424,27 +433,17 @@ export default {
       if (password !== confirmPassword) {
         reject({ message: "Password doesn't match. Please try again." });
       }
-
-      // jwt
-      //   .registerUser(username, email, password)
-      //   .then(response => {
-      //     // Redirect User
-      //     router.push(router.currentRoute.query.to || "/");
-
-      //     // Update data in localStorage
-      //     localStorage.setItem("accessToken", response.data.accessToken);
-      //     commit("UPDATE_USER_INFO", response.data.userData, { root: true });
-
-      //     resolve(response);
-      //   })
-      //   .catch(error => {
-      //     reject(error);
-      //   });
-
-      // console.log('masuk vuex')
       axios
           .post('api/daftarUser', payload.userDetails)
           .then(response => {
+
+          payload.notify({
+            title: 'Akun PKBL Online Berhasil dibuat',
+            text: 'Silahkan cek Email Untuk Aktivasi',
+            iconPack: 'feather',
+            icon: 'icon-check',
+            color: 'success'
+          }) 
           // Redirect User
           router.push(router.currentRoute.query.to || "/");
 
@@ -455,7 +454,17 @@ export default {
           resolve(response);
         })
         .catch(error => {
+          payload.notify({
+            time: 2500,
+            title: error.response.data.title,
+            // text: err.message,
+            text: error.response.data.text,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
           reject(error);
+
       });
 
 

@@ -10,7 +10,7 @@ module.exports = function(app) {
     app.post('/api/mitra', mitra.setProposalMitra);
     app.put('/api/datasuamiistri', mitra.setProposalSuamiIstriMitra);
     app.post('/api/daftarUser', daftar.daftarUser);
-    app.get('/api/verifyUser/:id', daftar.verifyUser);
+    app.get('/api/verifyUser/:rand/:username', daftar.verifyUser);
 
 
 };

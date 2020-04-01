@@ -59,9 +59,12 @@ Author URL: http://www.themeforest.net/user/pixinvent
     <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">
     Saya setuju membuat Akun. 
     </vs-checkbox>
-    
-    <vs-button  type="border" to="/pages/login" class="mt-6">Kembali</vs-button>
+     <vs-divider></vs-divider>
+    <vs-button type="border" to="/pages/login" class="mt-6">Kembali</vs-button>
+    <!-- <router-link to="/pages/login" class="mt-6">Kembali</router-link>  -->
     <vs-button class="float-right mt-6" @click="daftarUser" :disabled="!validateForm">Daftar</vs-button>
+    <vs-divider></vs-divider>
+    <center><router-link to="/pages/login" class="mt-6">Kirim Ulang Email Verifikasi</router-link></center> 
   </div>
 </template>
 

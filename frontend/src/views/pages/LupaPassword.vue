@@ -26,10 +26,23 @@
                                 </div>
 
                                 <vs-input type="email" label-placeholder="Email" v-model="value1" class="w-full mb-8" />
+                               <!--  <vue-recaptcha
+                                  ref="recaptcha"
+                                  @verify="onVerify"
+                                  @expired="onExpired"
+                                  :sitekey="sitekey"
+                                  class="w-full mb-8"
+                                  required>
+                                </vue-recaptcha> -->
                                 <vs-button type="border" to="/pages/login" class="px-4 w-full md:w-auto">Kembali</vs-button>
-                                <vs-button class="float-right px-4 w-full md:w-auto mt-3 mb-8 md:mt-0 md:mb-0">Recover</vs-button>
+                                <vs-button class="float-right px-4 w-full md:w-auto mt-3 mb-8 md:mt-0 md:mb-0">Pulihkan</vs-button>
                             </div>
                         </div>
+                        <!-- <template>
+                          <vue-recaptcha sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></vue-recaptcha>
+                        </template> -->
+                        
+                        <!-- <vs-button @click="resetRecaptcha"> Reset ReCAPTCHA </vs-button> -->
                    <!--  </div>
                 </div> -->
             </vx-card>
@@ -38,10 +51,30 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
 export default {
     data() {
         return {
-            value1: ''
+            value1: '',
+            sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+            secretkey: '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+        }
+    },
+    components: {
+        'vue-recaptcha': VueRecaptcha
+    },
+    methods: {
+        onSubmit: function () {
+          this.$refs.invisibleRecaptcha.execute()
+        },
+        onVerify: function (response) {
+          console.log('Verify: ' + response)
+        },
+        onExpired: function () {
+          console.log('Expired')
+        },
+        resetRecaptcha () {
+          this.$refs.recaptcha.reset() // Direct call reset method
         }
     }
 }
