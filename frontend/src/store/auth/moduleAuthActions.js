@@ -438,19 +438,14 @@ export default {
           .then(response => {
 
           payload.notify({
-            title: 'Akun PKBL Online Berhasil dibuat',
-            text: 'Silahkan cek Email Untuk Aktivasi',
+            title: 'Berhasil',
+            text: 'Akun PKBL Online Berhasil dibuat. Silahkan cek Email Untuk Aktivasi',
             iconPack: 'feather',
             icon: 'icon-check',
             color: 'success'
           }) 
           // Redirect User
           router.push(router.currentRoute.query.to || "/");
-
-          // // Update data in localStorage
-          // localStorage.setItem("accessToken", response.data.accessToken);
-          // commit("UPDATE_USER_INFO", response.data.userData, { root: true });
-
           resolve(response);
         })
         .catch(error => {
@@ -464,13 +459,80 @@ export default {
             color: 'danger'
           })
           reject(error);
-
       });
-
-
     });
   },
 
+  lupaPassword({ commit }, payload) {
+    const {
+      email,
+    } = payload.userDetails;
+    return new Promise((resolve, reject) => {
+      axios
+          .post('api/lupapassword', payload.userDetails)
+          .then(response => {
+          payload.notify({
+            title: 'Berhasil',
+            text: 'Silahkan cek email anda untuk pulihkan password akun Anda',
+            iconPack: 'feather',
+            icon: 'icon-check',
+            color: 'success'
+          }) 
+          // Redirect User
+          router.push(router.currentRoute.query.to || "/");
+          resolve(response);
+        })
+        .catch(error => {
+          payload.notify({
+            time: 2500,
+            title: error.response.data.title,
+            // text: err.message,
+            text: error.response.data.text,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+          reject(error);
+      });
+    });
+  },
+
+
+  pulihkanPassword({ commit }, payload) {
+    const {
+      id,
+      token,
+      password
+    } = payload.tokenDetails;
+    return new Promise((resolve, reject) => {
+      axios
+          .post('/api/pulihkanpassword', payload.tokenDetails )
+          .then(response => {
+            payload.notify({
+              title: response.data.title,
+              text: response.data.text,
+              iconPack: 'feather',
+              icon: 'icon-check',
+              color: 'success'
+            }) 
+          // Redirect User
+          router.push(router.currentRoute.query.to || {name: "page-login"});
+          resolve(response);
+        })
+        .catch(error => {
+          payload.notify({
+            time: 2500,
+            title: error.response.data.title,
+            // text: err.message,
+            text: error.response.data.text,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+          reject(error);
+      });
+    });
+  },
 
   fetchAccessToken() {
     return new Promise(resolve => {

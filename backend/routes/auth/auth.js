@@ -30,7 +30,7 @@ router.post("/", async function(req, res, next) {
         if (!resultVerify[0].verify) {        
           let title = "Akun PKBL belum di Verifikasi";        
           let text = "Silahkan Verifikasi Terlebih Dahulu di Email Anda";        
-          res.status(400).send({ title: error, text: text })
+          res.status(400).send({ title: text, text: text })
         } else {
           console.log('Akun sudah di verifikasi')
           let accessToken = jwt.sign({ id: user[0].npp }, jwtConfig.secret, {

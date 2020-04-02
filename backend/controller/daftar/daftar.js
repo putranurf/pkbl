@@ -71,16 +71,16 @@ exports.daftarUser = (async (req, res) => {
               })
             });
           } else {
-            let title = "Gagal Membuat Akun";        
-            let text = "Email yang dimasukan Sudah Terdaftar";        
+            let title = "Gagal";        
+            let text = "Membuat Akun Gagal. Email yang dimasukan Sudah Terdaftar";        
             res.status(400).send({ title: title, text: text })
           }
         }).catch(error => {
           console.log(error)           
         })
       } else {
-        let title = "Gagal Membuat Akun";        
-        let text = "Username yang di Masukan Sudah Terdaftar";        
+        let title = "Gagal";        
+        let text = "Membuat Akun Gagal. Username yang di Masukan Sudah Terdaftar";        
         res.status(400).send({ title: title, text: text });
       } 
     }).catch(err => {
@@ -120,8 +120,4 @@ exports.verifyUser = (async (req, res) => {
   } else {
       res.end("<h1>Request is from unknown source");
   }
-
 })
-
-
-
