@@ -64,7 +64,13 @@ Author URL: http://www.themeforest.net/user/pixinvent
     <!-- <router-link to="/pages/login" class="mt-6">Kembali</router-link>  -->
     <vs-button class="float-right mt-6" @click="daftarUser" :disabled="!validateForm">Daftar</vs-button>
     <vs-divider></vs-divider>
-    <center><router-link to="/pages/login" class="mt-6">Kirim Ulang Email Verifikasi</router-link></center> 
+    <center><a @click="popupActivo=true" color="primary" type="border">Kirim Email Verifikasi Ulang</a></center>
+    <!-- <a @click="activePrompt = true" class="w-full">Kirim Ulang Email Verifikasi</a> -->
+    <vs-popup class="holamundo"  title="Kirim Email Verifikasi Ulang" :active.sync="popupActivo">
+       <vs-input v-validate="'required|alpha_dash|min:3'" name="username_verifikasi" class="w-full mb-4 mt-5" placeholder="Username" v-model="username_verifikasi"  />
+       <vs-input v-validate="'required|email'" name="email_verifikasi" class="w-full mb-4 mt-5" placeholder="Email" v-model="email_verifikasi" />
+       <vs-button class="float-right mt-6" @click="kirimVerifikasi" :disabled="!validateFormVerifikasi">Kirim</vs-button>
+    </vs-popup>
   </div>
 </template>
 
@@ -72,22 +78,22 @@ Author URL: http://www.themeforest.net/user/pixinvent
 export default {
     data() {
         return {
+            popupActivo:false,
+            username_verifikasi: '',
+            email_verifikasi: '',
             username: '',
             email: '',
             password: '',
             confirm_password: '',
-            isTermsConditionAccepted: false
-
-            // displayName: '',
-            // email: '',
-            // password: '',
-            // confirm_password: '',
-            // isTermsConditionAccepted: false
+            isTermsConditionAccepted: false,
         }
     },
     computed: {
         validateForm() {
             return !this.errors.any() && this.username != '' && this.email != '' && this.password != '' && this.confirm_password != '' && this.isTermsConditionAccepted === true;
+        },
+        validateFormVerifikasi() {
+            return !this.errors.any() && this.username_verifikasi != '' && this.email_verifikasi != ''
         }
     },
     methods: {
@@ -126,6 +132,28 @@ export default {
             }
             // this.$store.dispatch('auth/registerUserJWT', payload)
             this.$store.dispatch('auth/daftarUser', payload)
+        },
+        clearFields() {
+            Object.assign(this.taskLocal, {
+              title: "",
+              desc: "",
+              isCompleted: false,
+              isImportant: false,
+              isStarred: false,
+              tags: []
+            })
+        },
+        kirimVerifikasi() {          
+            const payload = {
+              userDetails: {
+                username: this.username_verifikasi,
+                email: this.email_verifikasi,
+              },
+              notify: this.$vs.notify
+            }
+            // this.$store.dispatch('auth/registerUserJWT', payload)
+            this.$store.dispatch('auth/kirimVerifikasi', payload)
+            this.popupActivo = false
         }
     }
 }

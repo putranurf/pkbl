@@ -542,6 +542,46 @@ export default {
     });
   },
 
+  kirimVerifikasi({ commit }, payload) {
+    const {
+      username_verifikasi,
+      email_verifikasi
+      // password,
+      // confirmPassword
+    } = payload.userDetails;
+
+    return new Promise((resolve, reject) => {
+      // console.log('masuk vuex')
+      axios
+          .post('api/kirimVerifikasi', payload.userDetails)
+          .then(response => {
+
+          payload.notify({
+            title: 'Berhasil',
+            text: 'Verifikasi telah dikirim email. Silahkan buka email anda dan lakukan Aktivasi',
+            iconPack: 'feather',
+            icon: 'icon-check',
+            color: 'success'
+          }) 
+          // Redirect User
+          router.push(router.currentRoute.query.to || '/');
+          resolve(response);
+        })
+        .catch(error => {
+          payload.notify({
+            time: 2500,
+            title: error.response.data.title,
+            // text: err.message,
+            text: error.response.data.text,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+          reject(error);
+      });
+    });
+  },
+
   fetchAccessToken() {
     return new Promise(resolve => {
       jwt.refreshToken().then(response => {

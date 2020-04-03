@@ -14,6 +14,8 @@ module.exports = function(app) {
     app.get('/api/verifyUser/:rand/:username', daftar.verifyUser);
     app.post('/api/lupapassword', lupapassword.lupaPassword);
     app.post('/api/pulihkanpassword', lupapassword.pulihkanPassword);
+    app.post('/api/kirimVerifikasi', daftar.kirimVerifikasi);
+    app.get('/api/resendVerify/:rand/:id', daftar.resendVerify);
 
 
 };
