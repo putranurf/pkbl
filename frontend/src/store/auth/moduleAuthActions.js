@@ -471,14 +471,21 @@ export default {
       axios
           .post('api/lupapassword', payload.userDetails)
           .then(response => {
-          payload.notify({
-            title: 'Berhasil',
-            text: 'Silahkan cek email anda untuk pulihkan password akun Anda',
-            iconPack: 'feather',
-            icon: 'icon-check',
-            color: 'success'
-          }) 
-          // Redirect User
+             let rstoken           = '';
+             let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+             let charactersLength = characters.length;
+             for ( let i = 0; i < 200; i++ ) {
+                rstoken += characters.charAt(Math.floor(Math.random() * charactersLength));
+             }
+            localStorage.setItem('rstoken',rstoken)
+            payload.notify({
+              title: 'Berhasil',
+              text: 'Silahkan cek email anda untuk pulihkan password akun Anda',
+              iconPack: 'feather',
+              icon: 'icon-check',
+              color: 'success'
+            }) 
+          // Redirect User          
           router.push(router.currentRoute.query.to || "/");
           resolve(response);
         })
@@ -507,7 +514,8 @@ export default {
     return new Promise((resolve, reject) => {
       axios
           .post('/api/pulihkanpassword', payload.tokenDetails )
-          .then(response => {
+          .then(response => {         
+            localStorage.removeItem('rstoken')   
             payload.notify({
               title: response.data.title,
               text: response.data.text,

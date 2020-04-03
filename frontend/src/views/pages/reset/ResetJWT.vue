@@ -67,6 +67,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 </template>
 
 <script>
+import router from '@/router'
 export default {
     data() {
         return {
@@ -89,6 +90,11 @@ export default {
         let uri = currentUrl.split("/");
         this.id = uri[5]
         this.token = uri[6]
+        
+        console.log(localStorage.getItem('rstoken'))
+        if (!localStorage.getItem('rstoken')) {
+          this.$router.push(router.currentRoute.query.to || '/');
+        }
     },
     methods: {
         checkLogin() {

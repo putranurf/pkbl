@@ -131,4 +131,3 @@ exports.pulihkanPassword = (async (req, res) => {
       console.log(error)
   })  
 })
-
