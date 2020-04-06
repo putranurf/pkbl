@@ -309,8 +309,10 @@ export default {
         .then(resp => {
           const token = resp.data[1].accessToken;
           const user = JSON.stringify(resp.data[1].userData[0]);
+          // console.log(user)
           localStorage.setItem("accessToken", token); // store the token in localstorage
           localStorage.setItem("userInfo", user); // store the token in localstorage
+          localStorage.setItem("userRole", resp.data[1].userData[0].user_role); // store the token in localstorage
           axios.defaults.headers.common['Authorization'] = token
           commit('AUTH_SUCCESS', { token, user});
           // you have your token, now log in your user :)
@@ -338,7 +340,7 @@ export default {
   logout({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit("AUTH_LOGOUT");
-      localStorage.removeItem("accessToken"); // clear your user's token from localstorage
+      localStorage.removeItem("accessToken"); // clear your user's token from localstorage      
       delete axios.defaults.headers.common['Authorization']
       resolve();
     });

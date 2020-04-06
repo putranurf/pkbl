@@ -20,6 +20,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../src/store/store'
+import { AclRule } from 'vue-acl'
 
 Vue.use(Router)
 
@@ -82,7 +83,7 @@ const router = new Router({
                             { title: 'Mitra', active: true },
                         ],
                         pageTitle: 'Calon Mitra',
-                        rule: 'editor',
+                        rule: 'admin',
                         requiresAuth: true
                     },
                 },

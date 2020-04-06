@@ -8,7 +8,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.post("/", async function(req, res, next) {  
-  const sql = `select * from pk_auth_verify where username = $1`
+  const sql = ` select pkv.*, pma.user_role from pk_auth_verify pkv 
+                left join pk_trans_acl pka on pka.id_auth_verify = pkv.id
+                left join pk_mast_acl pma on pma.id = pka.id_mast_role 
+                where pkv.username = $1 `
   await model.query(sql, {
     bind: [req.body.username], 
     type: model.QueryTypes.SELECT

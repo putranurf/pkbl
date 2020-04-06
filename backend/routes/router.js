@@ -7,6 +7,7 @@ module.exports = function(app) {
     const mitra  = require('../controller/mitra/mitra.js')
     const daftar = require('../controller/daftar/daftar.js')
     const lupapassword = require('../controller/lupapassword/lupapassword.js')
+    const nav = require('../controller/nav/nav.js')
 
     app.post('/api/mitra', mitra.setProposalMitra);
     app.put('/api/datasuamiistri', mitra.setProposalSuamiIstriMitra);
@@ -16,6 +17,6 @@ module.exports = function(app) {
     app.post('/api/pulihkanpassword', lupapassword.pulihkanPassword);
     app.post('/api/kirimVerifikasi', daftar.kirimVerifikasi);
     app.get('/api/resendVerify/:rand/:id', daftar.resendVerify);
-
+    app.get('/api/nav', nav.nav)
 
 };

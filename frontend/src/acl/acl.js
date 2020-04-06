@@ -9,8 +9,9 @@ let initialRole = "admin"
 let userInfo = JSON.parse(localStorage.getItem("userInfo"))
 if(userInfo && userInfo.userRole) initialRole = userInfo.userRole
 
+
 export default new AclCreate({
-  initial: initialRole,
+  initial: 'admin',
   notfound: "/pages/not-authorized",
   router,
   acceptLocalRules: true,
