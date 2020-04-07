@@ -83,7 +83,7 @@ const router = new Router({
                             { title: 'Mitra', active: true },
                         ],
                         pageTitle: 'Calon Mitra',
-                        rule: 'admin',
+                        rule: 'editor',
                         requiresAuth: true
                     },
                 },

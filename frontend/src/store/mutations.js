@@ -96,22 +96,34 @@ const mutations = {
 
   // Updates user info in state and localstorage
   UPDATE_USER_INFO(state, payload) {
+    
+    const photoURL = {
+      photoURL    : require("@/assets/images/portrait/small/avatar-s-11.jpg"), // From Auth  
+    }
+
+    console.log('masuk mutations root/auth')
+    // console.log(state)
+    // console.log(JSON.parse(payload.user))
+    // console.log(photoURL)
+
+    const data = JSON.parse(localStorage.getItem("userInfo"))    
+    Object.assign(data, photoURL);
+    // console.log(data)
 
     // Get Data localStorage
-    let userInfo = JSON.parse(localStorage.getItem("userInfo")) || state.AppActiveUser
+    let userInfo = JSON.parse(localStorage.getItem("userInfo")) || state.AppActiveUser    
 
-    for (const property of Object.keys(payload)) {
+    // for (const property of Object.keys(payload)) {
 
-      if (payload[property] != null) {
-        // If some of user property is null - user default property defined in state.AppActiveUser
-        state.AppActiveUser[property] = payload[property]
+    //   if (payload[property] != null) {
+    //     // If some of user property is null - user default property defined in state.AppActiveUser
+    //     state.AppActiveUser[property] = payload[property]
 
-        // Update key in localStorage
-        userInfo[property] = payload[property]
-      }
+    //     // Update key in localStorage
+    //     userInfo[property] = payload[property]
+    //   }
+    // }  
 
-
-    }
     // Store data in localStorage
     localStorage.setItem("userInfo", JSON.stringify(userInfo))
   },

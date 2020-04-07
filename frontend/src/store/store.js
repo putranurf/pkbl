@@ -37,7 +37,7 @@ export default new Vuex.Store({
         // chat: moduleChat,
         // email: moduleEmail,
         auth: moduleAuth,
-        eCommerce: moduleECommerce,
+        // eCommerce: moduleECommerce,
     },
     strict: process.env.NODE_ENV !== 'production'
 })

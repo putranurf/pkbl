@@ -32,11 +32,11 @@ const userInfoLocalStorage = JSON.parse(localStorage.getItem("userInfo")) || {}
 const getUserInfo = () => {
   let userInfo = {}
 
-  // Update property in user
-  Object.keys(userDefaults).forEach((key) => {
-    // If property is defined in localStorage => Use that
-    userInfo[key] = userInfoLocalStorage[key] ?  userInfoLocalStorage[key] : userDefaults[key]
-  })
+  // // // Update property in user
+  // Object.keys(userDefaults).forEach((key) => {
+  //   // If property is defined in localStorage => Use that
+  //   userInfo[key] = userInfoLocalStorage[key] ?  userInfoLocalStorage[key] : userDefaults[key]
+  // })
 
   // Include properties from localStorage
   Object.keys(userInfoLocalStorage).forEach((key) => {
@@ -46,6 +46,7 @@ const getUserInfo = () => {
   return userInfo
 }
 
+// console.log(getUserInfo())
 
 // /////////////////////////////////////////////
 // State

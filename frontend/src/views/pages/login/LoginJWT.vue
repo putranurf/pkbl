@@ -58,8 +58,8 @@ import router from '@/router'
 export default {
   data() {
     return {
-      username: '',
-      password: '',
+      username: 'admin',
+      password: '123123',
       checkbox_remember_me: false
     }
   },
@@ -120,6 +120,7 @@ export default {
       
       this.$store.dispatch('auth/login', payload)
         .then(() => 
+            // location.reload()
             this.$router.push(router.currentRoute.query.to || {name: "dashboard-analytics"} ))
         // .catch(error => {
         //   this.$vs.loading.close()
